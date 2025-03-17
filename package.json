@@ -27,8 +27,7 @@
     "@flydotio/dockerfile": "^0.7.8",
     "@stylistic/eslint-plugin-js": "^2.2.2",
     "eslint": "^9.22.0",
-    "globals": "^15.6.0",
-    "pkg": "^5.8.1"
+    "globals": "^15.6.0"
   },
   "dependencies": {
     "colors": "^1.4.0",

@@ -7,20 +7,9 @@ const creaServicioEnWindows = async (text) => {
       name: 'FolderOrganizer',
       description: text.descripcion,
       script: fullPath,
-      account: {
-        user: 'yankies_0121@hotmail.com',
-        password: '6,vdRV<=f>:WEBrJ',
-      },
-      allowServiceLogon: true,
       nodeOptions: [
         '--harmony',
         '--max_old_space_size=4096'
-      ],
-      env: [
-        {
-          name: 'NODE_ENV',
-          value: 'production'
-        }
       ]
     })
     if (svc.exists) {
