@@ -2,3 +2,4 @@ node_modules
 pruebas.js
 dist
 config.json
+process/daemon
