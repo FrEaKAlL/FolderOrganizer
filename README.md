@@ -19,6 +19,7 @@ Aplicación de escritorio para organizar tus archivos por extensión moviéndolo
 
 ## Instalación<a id='id1'></a>
 
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/FrEaKAlL/FolderOrganizer?color=299de3)
 
 
