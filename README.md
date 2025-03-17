@@ -15,7 +15,7 @@ Aplicación de escritorio para organizar tus archivos por extensión moviéndolo
     - 1.4. [Creación de servicio de Windows](#id1-3)
     - 1.5. [Ejecución manual del aplicativo](#id1-4)
 2. [Planteamiento del problema a resolver](#id2)
-    - 1.1. [Tecnologias](#id1-7)
+    - 2.1. [Tecnologias](#id1-7)
 
 ## Instalación<a id='id1'></a>
 
