@@ -57,6 +57,9 @@ const moveFiles = (text) => {
       let RegistraOtros = true
       fileConfig.carpetas.forEach(carpeta => {
         if (carpeta.extencion.includes(x.ext)) {
+          if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ carpeta.texto }`)) {
+            validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ carpeta.texto }`)
+          }
           RegistraOtros = false
           logger.info(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ carpeta.texto }`)
           x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ carpeta.texto }`, x.name, x.ext, 0)
@@ -73,6 +76,9 @@ const moveFiles = (text) => {
         }
       })
       if (RegistraOtros) {
+        if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ text.texto }`)) {
+          validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }\\${ text.texto }`)
+        }
         x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }/${ text.otros }`, x.name, 0)
         fs.rename(x.path, `${ fileConfig.rutaAOrganizar.trimEnd('/').trimEnd('\\') }/${ text.otros }/${ x.name }`, (err) => {
           if (err) throw err

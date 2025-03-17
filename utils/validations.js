@@ -16,5 +16,12 @@ const fileExist = (path) => {
     return false
   }
 }
+const createDirectory = (path) => {
+  try {
+    fs.mkdirSync(path, { recursive: true })
+  } catch {
+    return false
+  }
+}
 
-module.exports = { fileExist, directoryExist }
+module.exports = { fileExist, directoryExist, createDirectory }

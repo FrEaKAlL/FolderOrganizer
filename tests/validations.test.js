@@ -12,4 +12,7 @@ describe('tests begin for the validation file', () => {
     const resultado = validations.directoryExist('x:/')
     assert.strictEqual(resultado, false)
   })
+  test('when the directory create', () => {
+    console.log(validations.createDirectory('./test'))
+  })
 })

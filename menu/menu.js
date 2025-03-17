@@ -11,9 +11,7 @@ const processFile = require('../process/process')
 
 
 const header = () => {
-  logger.info(`${ '*'.padStart(60, '*').green }`)
-  logger.info(`${ resources.init.titulo.padStart(40, ' ').white }`)
-  logger.info(`${ '*'.padStart(60, '*').green }`)
+  logger.box(resources.init.titulo.blue)
 }
 const language = () => {
   return inquirer.prompt({
@@ -159,7 +157,7 @@ const questionExecutePrevio = (text) => {
 const executePrevio = async () => {
   const configuration = fileConfig.getConfiguration()
   const text = configuration.idioma === 'Ingles' ? resourcesIng.ing : resourcesEsp.esp
-  logger.info(text.existeUnaConfiguracion)
+  logger.warn(text.existeUnaConfiguracion.yellow)
   configuration.carpetas.forEach(info => {
     logger.info(`${ info.texto.padEnd(15, ' ') }[${ info.extencion }]`)
   })
