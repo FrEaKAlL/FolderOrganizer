@@ -22,7 +22,7 @@ Aplicación de escritorio para organizar tus archivos por extensión moviéndolo
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/FrEaKAlL/FolderOrganizer?color=299de3)
 
 
-Para poder realizar la instalación es algo bastante sencillo, daremos doble click sobre el instalador FolderOrganizer_Installer.exe, el cual por medio de un wizard de instalación nos ira guiado poco a poco para realizar esto correctamente.
+Para poder realizar la instalación es algo bastante sencillo, daremos doble click sobre el instalador [FolderOrganizer_Installer.exe](https://github.com/FrEaKAlL/FolderOrganizer/releases/tag/v1.0.0), el cual por medio de un wizard de instalación nos ira guiado poco a poco para realizar esto correctamente.
 
 <img src='./assets/instalacion-1.png'>
 
