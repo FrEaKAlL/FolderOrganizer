@@ -1,0 +1,87 @@
+{
+    "ing": {
+        "rutaDeDescarga": "📁 enter the route you want to organize: ",
+        "infoDeConfiguracion": {
+            "texto": "📝 use default or custom settings",
+            "opciones": [
+                "default",
+                "custom setting"
+            ]
+        },
+        "rutaInValida": "invalid route",
+        "extencionRequerida": "required extension",
+        "existeUnaConfiguracion": "a previously loaded configuration has been found 🔧",
+        "preguntaDeEjecucion": "you want to continue with the configuration found ❓",
+        "buscar": "searching...",
+        "descripcion": "move files in the parent folder by extension",
+        "preguntaCrearServicio": "do you want to create the service right now? ❓",
+        "configuracionGuardada": "save settings!",
+        "iniciaGuardado": "saving...",
+        "confirmacion": "do you want to continue or load another configuration ❓",
+        "configDefecto": [
+            "executables    [exe, msi]",
+            "excel          [csv, slsx]",
+            "PDF            [pdf]",
+            "text           [txt, log]",
+            "scripts        [sql]",
+            "word           [docx]",
+            "presentations  [pptx]",
+            "zip o rar      [zip, rar]",
+            "ISO            [iso]",
+            "images         [png, jpg]",
+            "JSON           [json]",
+            "others         [...]"
+        ],
+        "otros": "others",
+        "ejecutaProceso": "you want to run the process right now ❓",
+        "preguntaAConfigurar": "the folder has",
+        "preguntaExtenciones": "what extensions do you use, separate them by , ",
+        "errorConfiguracion": "no folders and their extensions were configured",
+        "carpetasAConfigurar": [ 
+            {
+                "texto": "executables", 
+                "extencion": "exe, msi"
+            },
+            {
+                "texto": "excel", 
+                "extencion": "csv, xlsx"
+            },
+            {
+                "texto": "PDF",
+                "extencion": "pdf"
+            },
+            {
+                "texto": "text",
+                "extencion": "txt, log"
+            },
+            {
+                "texto": "scripts",
+                "extencion": "sql"
+            },
+            {
+                "texto": "word",
+                "extencion": "docx"
+            },
+            {
+                "texto": "presentations",
+                "extencion": "pptx"
+            },
+            {
+                "texto": "zip o rar",
+                "extencion": "zip, rar"
+            },
+            {
+                "texto": "ISO",
+                "extencion": "iso"
+            },
+            {
+                "texto": "images",
+                "extencion": "png, jpg"
+            },
+            {
+                "texto": "JSON",
+                "extencion": "json"
+            }
+        ]
+    }
+}

@@ -1,0 +1,87 @@
+{
+    "esp": {
+        "rutaDeDescarga": "📁 Ingresa la ruta que deseas organizar: ",
+        "infoDeConfiguracion": {
+            "texto": "📝 Usar configuración por defecto o personalizada",
+            "opciones": [
+                "defecto",
+                "personalizada"
+            ]
+        },
+        "rutaInValida": "Ruta no valida",
+        "extencionRequerida": "Extensión requerida",
+        "existeUnaConfiguracion": "Se a encontrado una configuracion cargada previamente 🔧",
+        "preguntaDeEjecucion": "Deseas continuar con la configuracion encontrada ❓",
+        "buscar": "buscando...",
+        "descripcion": "Mueve los archivos en la carpeta padre por extensión",
+        "preguntaCrearServicio": "Deseas crear el servicio en este momento ❓",
+        "configuracionGuardada": "configuracion guardada!",
+        "iniciaGuardado": "guardando...",
+        "confirmacion": "Deseas continuar o cargar otra configuración ❓",
+        "configDefecto": [
+            "Ejecutables    [exe, msi]",
+            "Excel          [csv, xlsx]",
+            "PDF            [pdf]",
+            "Texto          [txt, log]",
+            "Scripts        [sql]",
+            "Word           [docx]",
+            "Presentaciones [pptx]",
+            "Zip o Rar      [zip, rar]",
+            "ISO            [iso]",
+            "Imagenes       [png, jpg]",
+            "JSON           [json]",
+            "Otros          [...]"
+        ],
+        "otros": "Otros",
+        "ejecutaProceso": "Quieres ejecutar el proceso en este momento ❓",
+        "preguntaAConfigurar": "La carpeta tiene",
+        "preguntaExtenciones": "Que extensiones utiliza sepáralas por ,",
+        "errorConfiguracion": "No se configuro ninguna carpeta y sus extensiones",
+        "carpetasAConfigurar": [
+            {
+                "texto": "Ejecutables", 
+                "extencion": "exe, msi"
+            },
+            {
+                "texto": "Excel", 
+                "extencion": "csv, xlsx"
+            },
+            {
+                "texto": "PDF",
+                "extencion": "pdf"
+            },
+            {
+                "texto": "Texto",
+                "extencion": "txt, log"
+            },
+            {
+                "texto": "Scripts",
+                "extencion": "sql"
+            },
+            {
+                "texto": "Word",
+                "extencion": "docx"
+            },
+            {
+                "texto": "Presentaciones",
+                "extencion": "pptx"
+            },
+            {
+                "texto": "zip o rar",
+                "extencion": "zip, rar"
+            },
+            {
+                "texto": "ISO",
+                "extencion": "iso"
+            },
+            {
+                "texto": "Imagenes",
+                "extencion": "png, jpg"
+            },
+            {
+                "texto": "JSON",
+                "extencion": "json"
+            }
+        ]
+    }
+}

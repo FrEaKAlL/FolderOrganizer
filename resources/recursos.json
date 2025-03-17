@@ -1,0 +1,10 @@
+{
+    "init": {
+        "titulo": "📁 FOLDER ORGANIZER",
+        "texto": "🗣️  select your language",
+        "opciones": [
+            " Español",
+            "Ingles"
+        ]
+    }
+}

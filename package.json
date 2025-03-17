@@ -1,0 +1,39 @@
+{
+  "name": "folderorganizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development node index.js",
+    "test": "cross-env NODE_ENV=test node --test",
+    "lint": "eslint .",
+    "exe": "pkg ."
+  },
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "node_modules/node-windows/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  "author": "Freak0121",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@flydotio/dockerfile": "^0.7.8",
+    "@stylistic/eslint-plugin-js": "^2.2.2",
+    "eslint": "^9.22.0",
+    "globals": "^15.6.0",
+    "pkg": "^5.8.1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "inquirer": "^12.4.3",
+    "node-windows": "^1.0.0-beta.8"
+  }
+}
