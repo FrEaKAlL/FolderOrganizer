@@ -8,18 +8,7 @@
     "dev": "cross-env NODE_ENV=development node index.js",
     "test": "cross-env NODE_ENV=test node --test",
     "build:ui": "@powershell Remove-Item -Recurse -Force dist/FolderOrganizer && @powershell Copy-Item ./utils -Recurse ./dist/FolderOrganizer/utils && @powershell Copy-Item ./menu -Recurse ./dist/FolderOrganizer/menu && @powershell Copy-Item ./process -Recurse ./dist/FolderOrganizer/process && @powershell Copy-Item ./resources -Recurse ./dist/FolderOrganizer/resources && @powershell Copy-Item ./node_modules -Recurse ./dist/FolderOrganizer/node_modules  && @powershell Copy-Item index.js -Recurse ./dist/FolderOrganizer/index.js && @powershell Copy-Item start.exe -Recurse ./dist/FolderOrganizer/start.exe && @powershell Remove-Item -Recurse -Force dist/FolderOrganizer/process/daemon",
-    "lint": "eslint .",
-    "exe": "pkg ."
-  },
-  "bin": "index.js",
-  "pkg": {
-    "assets": [
-      "node_modules/node-windows/**/*"
-    ],
-    "targets": [
-      "node18-win-x64"
-    ],
-    "outputPath": "dist"
+    "lint": "eslint ."
   },
   "author": "Freak0121",
   "license": "ISC",
@@ -34,7 +23,9 @@
     "colors": "^1.4.0",
     "consola": "^3.4.1",
     "cross-env": "^7.0.3",
-    "inquirer": "^12.4.3",
+    "inquirer": "^12.4.3"
+  },
+  "optionalDependencies": {
     "node-windows": "^1.0.0-beta.8"
   }
 }
