@@ -5,9 +5,10 @@ const validations = require('./validations')
 const fs = require('fs')
 const fullPath = '.'
 const nameFileConfig = 'config.json'
+const { charset } = require('./charsets')
 
 const validateFileConfig = () => {
-  if (validations.fileExist(`${ fullPath }\\${ nameFileConfig }`)) {
+  if (validations.fileExist(`${ fullPath }${ charset() }${ nameFileConfig }`)) {
     if (getConfiguration().empty) {
       return false
     }
@@ -16,7 +17,7 @@ const validateFileConfig = () => {
 }
 const getConfiguration = () => {
   try {
-    return JSON.parse(fs.readFileSync(`${ fullPath }\\${ nameFileConfig }`, 'utf-8'))
+    return JSON.parse(fs.readFileSync(`${ fullPath }${ charset() }${ nameFileConfig }`, 'utf-8'))
   } catch (exception) {
     logger.error(exception.message)
     process.exit(1)
@@ -24,9 +25,9 @@ const getConfiguration = () => {
 }
 
 const createConfigEmpty = () => {
-  if (!validations.fileExist(`${ fullPath }\\${ nameFileConfig }`)) {
+  if (!validations.fileExist(`${ fullPath }${ charset() }${ nameFileConfig }`)) {
     try {
-      fs.writeFileSync(`${ fullPath }\\${ nameFileConfig }`, JSON.stringify({ empty: true }))
+      fs.writeFileSync(`${ fullPath }${ charset() }${ nameFileConfig }`, JSON.stringify({ empty: true }))
     } catch (exception) {
       logger.error(exception.message)
     }
@@ -45,7 +46,7 @@ const saveConfiguration = (language, path, typeConfig, configurationCustom) => {
     json.carpetas = configurationCustom
   }
   try {
-    fs.writeFileSync(`${ fullPath.replace('utils','config') }\\${ nameFileConfig }`, JSON.stringify(json))
+    fs.writeFileSync(`${ fullPath.replace('utils','config') }${ charset() }${ nameFileConfig }`, JSON.stringify(json))
     logger.info(text.configuracionGuardada)
     return true
   } catch {
