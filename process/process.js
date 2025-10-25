@@ -9,11 +9,13 @@ const { charset } = require('../utils/charsets')
 let data = []
 
 const getName = (onlyPath, name, ext, count) => {
+  console.log('Getting name for:', name)
   let onlyName = name.split('.')
   onlyName.pop()
-  if (validations.directoryExist(`${ onlyPath }${ charset() }${ name }`)) {
+  if (validations.fileExist(`${ onlyPath }${ charset() }${ name }`)) {
     count += 1
     if (onlyName.join('.').includes(`(${ count - 1 })`)) {
+      console.log(onlyName.join('.'))
       name = `${ onlyName.join('.').replace(`(${ count - 1 })`, `(${ count })`) }.${ ext }`
     } else {
       name = `${ onlyName.join('.') } (${ count }).${ ext }`
@@ -77,10 +79,10 @@ const moveFiles = (text) => {
         }
       })
       if (RegistraOtros) {
-        if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.texto }`)) {
-          validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.texto }`)
+        if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`)) {
+          validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`)
         }
-        x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`, x.name, 0)
+        x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`, x.name, x.ext, 0)
         fs.rename(x.path, `${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }${ charset() }${ x.name }`, (err) => {
           if (err) throw err
           fs.stat(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }${ charset() }${ x.name }`, (err, stats) => {
