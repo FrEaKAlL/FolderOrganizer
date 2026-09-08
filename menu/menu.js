@@ -156,7 +156,7 @@ const questionExecutePrevio = (text) => {
 }
 const executePrevio = async () => {
   const configuration = fileConfig.getConfiguration()
-  const text = configuration.idioma === 'Ingles' ? resourcesIng.ing : resourcesEsp.esp
+  const text = configuration.idioma === 'ingles' ? resourcesIng.ing : resourcesEsp.esp
   logger.warn(text.existeUnaConfiguracion.yellow)
   configuration.carpetas.forEach(info => {
     logger.info(`${ info.texto.padEnd(15, ' ') }[${ info.extencion }]`)

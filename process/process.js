@@ -1,103 +1,98 @@
 const recursosIng = require('../resources/recursos.ing.json')
 const recursosEsp = require('../resources/recursos.esp.json')
-const path = require('path')
-const fs = require('fs')
+const path = require('node:path')
+const fs = require('node:fs/promises')
+const { constants } = require('node:fs')
 const logger = require('../utils/logger')
-const validations = require('../utils/validations')
-const config  = require('../utils/fileConfig')
-const { charset } = require('../utils/charsets')
-let data = []
+const config = require('../utils/fileConfig')
 
-const getName = (onlyPath, name, ext, count) => {
-  console.log('Getting name for:', name)
-  let onlyName = name.split('.')
-  onlyName.pop()
-  if (validations.fileExist(`${ onlyPath }${ charset() }${ name }`)) {
-    count += 1
-    if (onlyName.join('.').includes(`(${ count - 1 })`)) {
-      console.log(onlyName.join('.'))
-      name = `${ onlyName.join('.').replace(`(${ count - 1 })`, `(${ count })`) }.${ ext }`
-    } else {
-      name = `${ onlyName.join('.') } (${ count }).${ ext }`
-    }
-    return getName(onlyPath, name, ext, count)
-  }
-  return name
+const nextName = name => {
+  const extension = path.extname(name)
+  const baseName = path.basename(name, extension)
+  const match = baseName.match(/^(.*) \((\d+)\)$/)
+  return match
+    ? `${ match[1] } (${ Number(match[2]) + 1 })${ extension }`
+    : `${ baseName } (1)${ extension }`
 }
-const scanDirs = (directoryPath) => {
+
+const moveWithoutOverwrite = async (source, target) => {
   try {
-    let ls = fs.readdirSync(directoryPath)
-
-    for (let index = 0; index < ls.length; index++) {
-      const file = path.join(directoryPath, ls[index])
-      let dataFile = null
-      try {
-        dataFile = fs.lstatSync(file)
-      } catch (err) {
-        logger.error(err.message)
-      }
-
-      if (dataFile) {
-        if (!dataFile.isDirectory()) {
-          data.push({
-            path: file,
-            isDirectory: dataFile.isDirectory(),
-            length: dataFile.size,
-            name: file.split(charset())[file.split(charset()).length - 1],
-            ext: file.split('.')[file.split('.').length - 1].toLowerCase()
-          })
-        }
-      }
+    await fs.link(source, target)
+  } catch (error) {
+    if (error.code === 'EEXIST') {
+      throw error
     }
-  } catch (e) {
-    logger.error(e.message)
+
+    if (![ 'EPERM', 'EXDEV', 'EOPNOTSUPP' ].includes(error.code)) {
+      throw error
+    }
+
+    await fs.copyFile(source, target, constants.COPYFILE_EXCL)
   }
+
+  await fs.unlink(source)
 }
-const moveFiles = (text) => {
-  const fileConfig = config.getConfiguration()
-  if (data.length !== 0) {
-    data.forEach((x, i) => {
-      let RegistraOtros = true
-      fileConfig.carpetas.forEach(carpeta => {
-        if (carpeta.extencion.includes(x.ext)) {
-          if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }`)) {
-            validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }`)
-          }
-          RegistraOtros = false
-          logger.info(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }`)
-          x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }`, x.name, x.ext, 0)
-          fs.rename(x.path, `${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }${ charset() }${ x.name }`, (err) => {
-            if (err) throw err
-            fs.stat(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ carpeta.texto }${ charset() }${ x.name }`, (err, stats) => {
-              if (err) throw err
-              logger.info(`stats: ${JSON.stringify(stats)}`)
-            })
-          })
-          delete(data[i])
-        } else if (x.ext === 'tmp' || x.ext === 'crdownload') {
-          RegistraOtros = false
-        }
-      })
-      if (RegistraOtros) {
-        if (!validations.directoryExist(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`)) {
-          validations.createDirectory(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`)
-        }
-        x.name = getName(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }`, x.name, x.ext, 0)
-        fs.rename(x.path, `${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }${ charset() }${ x.name }`, (err) => {
-          if (err) throw err
-          fs.stat(`${ fileConfig.rutaAOrganizar.trimEnd(charset()) }${ charset() }${ text.otros }${ charset() }${ x.name }`, (err, stats) => {
-            if (err) throw err
-            logger.info(`stats: ${JSON.stringify(stats)}`)
-          })
-        })
-        delete(data[i])
+
+const moveFile = async (file, destinationDirectory) => {
+  let name = file.name
+
+  while (true) {
+    try {
+      await moveWithoutOverwrite(file.path, path.join(destinationDirectory, name))
+      return name
+    } catch (error) {
+      if (error.code !== 'EEXIST') {
+        throw error
       }
-    })
+
+      name = nextName(name)
+    }
   }
 }
-const executeProcess = () => {
-  const fileConfig = config.getConfiguration()
-  scanDirs(fileConfig.rutaAOrganizar)
-  moveFiles((fileConfig.idioma === 'Ingles' ? recursosIng.ing : recursosEsp.esp))
+
+const scanDirs = async (directoryPath) => {
+  try {
+    const entries = await fs.readdir(directoryPath, { withFileTypes: true })
+
+    return entries
+      .filter(entry => !entry.isDirectory())
+      .map(entry => ({
+        path: path.join(directoryPath, entry.name),
+        name: entry.name,
+        ext: path.extname(entry.name).slice(1).toLowerCase()
+      }))
+  } catch (error) {
+    logger.error(error.message)
+    return []
+  }
 }
+
+const moveFiles = async (data, text, fileConfig) => {
+  for (const file of data) {
+    if (file.ext === 'tmp' || file.ext === 'crdownload') {
+      continue
+    }
+
+    const folder = fileConfig.carpetas.find(carpeta => {
+      const extensions = carpeta.extencion.split(',').map(ext => ext.trim().toLowerCase())
+      return extensions.includes(file.ext)
+    })
+    const destinationDirectory = path.join(fileConfig.rutaAOrganizar, folder ? folder.texto : text.otros)
+
+    try {
+      await fs.mkdir(destinationDirectory, { recursive: true })
+      await moveFile(file, destinationDirectory)
+      logger.info(destinationDirectory)
+    } catch (error) {
+      logger.error(`${ file.name }: ${ error.message }`)
+    }
+  }
+}
+
+const executeProcess = async (fileConfig = config.getConfiguration()) => {
+  const data = await scanDirs(fileConfig.rutaAOrganizar)
+  const text = fileConfig.idioma === 'ingles' ? recursosIng.ing : recursosEsp.esp
+  await moveFiles(data, text, fileConfig)
+}
+
 module.exports = { executeProcess }

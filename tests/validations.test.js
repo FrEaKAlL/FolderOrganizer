@@ -1,18 +1,31 @@
-const { describe, test } = require('node:test')
-const assert = require('node:assert')
-
+const { afterEach, beforeEach, describe, test } = require('node:test')
+const assert = require('node:assert/strict')
+const fs = require('node:fs')
+const os = require('node:os')
+const path = require('node:path')
 const validations = require('../utils/validations')
 
-describe('tests begin for the validation file', () => {
-  test('when the directory exists', () => {
-    const resultado = validations.directoryExist('c:/')
-    assert.strictEqual(resultado, true)
+describe('validations', () => {
+  let directory
+
+  beforeEach(() => {
+    directory = fs.mkdtempSync(path.join(os.tmpdir(), 'folder-organizer-'))
   })
-  test('when the directory not exists', () => {
-    const resultado = validations.directoryExist('x:/')
-    assert.strictEqual(resultado, false)
+
+  afterEach(() => {
+    fs.rmSync(directory, { recursive: true, force: true })
   })
-  test('when the directory create', () => {
-    console.log(validations.createDirectory('./test'))
+
+  test('detects existing and missing directories', () => {
+    assert.strictEqual(validations.directoryExist(directory), true)
+    assert.strictEqual(validations.directoryExist(path.join(directory, 'missing')), false)
+  })
+
+  test('creates a directory', () => {
+    const newDirectory = path.join(directory, 'new-directory')
+
+    validations.createDirectory(newDirectory)
+
+    assert.strictEqual(validations.directoryExist(newDirectory), true)
   })
 })
