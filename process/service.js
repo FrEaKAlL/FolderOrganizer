@@ -1,9 +1,7 @@
 const os = require('os')
-const { execSync } = require('child_process')
+const { execFileSync } = require('node:child_process')
 
-const getNodePath = () => {
-  return execSync('which node').toString().trim()
-}
+const quoteSystemdValue = value => `"${ String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/[\r\n]/g, ' ') }"`
 
 const creaServicioEnWindows = async (text) => {
   try {
@@ -38,8 +36,8 @@ Description=${ text.descripcion }
 After=network.target
 
 [Service]
-ExecStart=${ getNodePath() } ${ fullPath }
-WorkingDirectory=${__dirname.replace('/process', '')}
+ExecStart=${ quoteSystemdValue(process.execPath) } ${ quoteSystemdValue(fullPath) }
+WorkingDirectory=${ quoteSystemdValue(__dirname.replace('/process', '')) }
 Restart=always
 User=${ process.env.USER }
 Environment=NODE_ENV=production
@@ -48,11 +46,13 @@ Environment=NODE_ENV=production
 WantedBy=multi-user.target`.trim()
 
       const servicePath = `/etc/systemd/system/${ serviceName }.service`
-      console.log(`echo "${ serviceFile.replace(/"/g, '\\"') }" | sudo tee ${ servicePath }`)
-      execSync(`echo "${ serviceFile.replace(/"/g, '\\"') }" | sudo tee ${ servicePath }`)
-      execSync('sudo systemctl daemon-reload')
-      execSync(`sudo systemctl enable ${ serviceName }`)
-      execSync(`sudo systemctl start ${ serviceName }`)
+      execFileSync('sudo', [ 'tee', servicePath ], {
+        input: serviceFile,
+        stdio: [ 'pipe', 'inherit', 'inherit' ]
+      })
+      execFileSync('sudo', [ 'systemctl', 'daemon-reload' ], { stdio: 'inherit' })
+      execFileSync('sudo', [ 'systemctl', 'enable', serviceName ], { stdio: 'inherit' })
+      execFileSync('sudo', [ 'systemctl', 'start', serviceName ], { stdio: 'inherit' })
     }
   }catch(ex) {
     console.error(ex)

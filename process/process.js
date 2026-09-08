@@ -2,27 +2,52 @@ const recursosIng = require('../resources/recursos.ing.json')
 const recursosEsp = require('../resources/recursos.esp.json')
 const path = require('node:path')
 const fs = require('node:fs/promises')
+const { constants } = require('node:fs')
 const logger = require('../utils/logger')
 const config = require('../utils/fileConfig')
 
-const getName = async (directoryPath, name) => {
-  try {
-    await fs.access(path.join(directoryPath, name))
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      return name
-    }
-    throw error
-  }
-
+const nextName = name => {
   const extension = path.extname(name)
   const baseName = path.basename(name, extension)
   const match = baseName.match(/^(.*) \((\d+)\)$/)
-  const nextName = match
+  return match
     ? `${ match[1] } (${ Number(match[2]) + 1 })${ extension }`
     : `${ baseName } (1)${ extension }`
+}
 
-  return getName(directoryPath, nextName)
+const moveWithoutOverwrite = async (source, target) => {
+  try {
+    await fs.link(source, target)
+  } catch (error) {
+    if (error.code === 'EEXIST') {
+      throw error
+    }
+
+    if (![ 'EPERM', 'EXDEV', 'EOPNOTSUPP' ].includes(error.code)) {
+      throw error
+    }
+
+    await fs.copyFile(source, target, constants.COPYFILE_EXCL)
+  }
+
+  await fs.unlink(source)
+}
+
+const moveFile = async (file, destinationDirectory) => {
+  let name = file.name
+
+  while (true) {
+    try {
+      await moveWithoutOverwrite(file.path, path.join(destinationDirectory, name))
+      return name
+    } catch (error) {
+      if (error.code !== 'EEXIST') {
+        throw error
+      }
+
+      name = nextName(name)
+    }
+  }
 }
 
 const scanDirs = async (directoryPath) => {
@@ -56,8 +81,7 @@ const moveFiles = async (data, text, fileConfig) => {
 
     try {
       await fs.mkdir(destinationDirectory, { recursive: true })
-      const name = await getName(destinationDirectory, file.name)
-      await fs.rename(file.path, path.join(destinationDirectory, name))
+      await moveFile(file, destinationDirectory)
       logger.info(destinationDirectory)
     } catch (error) {
       logger.error(`${ file.name }: ${ error.message }`)
