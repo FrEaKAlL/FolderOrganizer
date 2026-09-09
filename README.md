@@ -103,6 +103,23 @@ Se presentaba una problemática al momento de descargar contenido de internet, c
 
 Por esta razón se planteo el automatizar el proceso de identificación de los archivos para moverlo de forma automática a su respectiva carpeta, por medio del servicio, una vez se realizó la implementación y análisis de la solución se identifico que es posible que no se requiera en ocasiones un servicio por esto se creo un proceso de ejecución manual complementando el proyecto.
 
+## Generar el instalador
+
+La compilación requiere Node.js e Inno Setup 6. Ejecuta el siguiente comando desde la raíz del proyecto:
+
+```powershell
+npm run build:installer
+```
+
+El comando prepara la aplicación en `dist/FolderOrganizer-build`, instala solo las dependencias de producción y compila el instalador en `dist/FolderOrganizer-Installer/FolderOrganizer_Installer.exe`.
+
+Si Inno Setup se encuentra en una ubicación distinta a la habitual, define la ruta de `ISCC.exe` antes de ejecutar el comando:
+
+```powershell
+$env:ISCC_PATH = 'C:\ruta\a\ISCC.exe'
+npm run build:installer
+```
+
 ### Tecnologías<a id='id1-7'></a>
 
 Para la creación del proyecto se utilizaron las siguientes tecnologías
