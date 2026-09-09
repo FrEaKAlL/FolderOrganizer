@@ -9,6 +9,9 @@
     "test": "cross-env NODE_ENV=test node --test",
     "build:ui": "node scripts/build-ui.js",
     "build:installer": "npm run build:ui && node scripts/build-installer.js",
+    "release:patch": "npm version patch -m \"Release v%s\" && git push origin master --follow-tags",
+    "release:minor": "npm version minor -m \"Release v%s\" && git push origin master --follow-tags",
+    "release:major": "npm version major -m \"Release v%s\" && git push origin master --follow-tags",
     "lint": "eslint . --fix"
   },
   "author": "Freak0121",

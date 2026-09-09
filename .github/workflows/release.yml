@@ -1,0 +1,49 @@
+name: Create release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.actor == github.repository_owner
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress --limit-output --yes
+
+      - name: Verify release version
+        shell: pwsh
+        run: |
+          $version = node -p "require('./package.json').version"
+          if ("v$version" -ne "${{ github.ref_name }}") {
+            throw "The tag ${{ github.ref_name }} does not match package.json version $version."
+          }
+
+      - name: Build installer
+        run: npm run build:installer
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" "dist/FolderOrganizer-Installer/FolderOrganizer_Installer.exe" --title "Folder Organizer ${{ github.ref_name }}" --generate-notes
