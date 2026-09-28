@@ -10,10 +10,10 @@
 
 <p align="center">
   <a href="https://github.com">
-    <img src="https://shields.io" alt="GitHub package.json version">
+    <img src="https://img.shields.io/github/package-json/v/FrEaKAlL/FolderOrganizer?color=299de3" alt="GitHub package.json version">
   </a>
   <a href="https://opensource.org">
-    <img src="https://shields.io" alt="License: MIT">
+    <img src="https://img.shields.io/github/license/FrEaKAlL/FolderOrganizer" alt="License: MIT">
   </a>
 </p>
 
