@@ -47,7 +47,7 @@ Para trabajar en el código de FolderOrganizer, asegúrate de tener instalado en
    ```
 3. Instala todas las dependencias del proyecto (incluyendo las de desarrollo):
    ```bash
-   npm install
+   pnpm install
    ```
 4. Para probar el script interactivamente mientras programas:
    ```bash
@@ -83,7 +83,7 @@ Este proyecto utiliza **ESLint** para garantizar que el código mantenga un est�
 Antes de realizar tus *commits* o enviar tu Pull Request, es **obligatorio** verificar que tu código cumpla con las reglas del linter ejecutanado:
 
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 Si el comando muestra errores, corrígelos antes de subir tus cambios. Muchos editores como *VS Code* con la extensión de ESLint te ayudarán a corregirlos automáticamente mientras escribes.

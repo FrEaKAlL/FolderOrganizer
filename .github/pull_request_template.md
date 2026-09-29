@@ -27,4 +27,4 @@ Describe how you tested the changes.
 Include relevant commands when applicable.
 
 ```bash
-npm test
+pnpm test

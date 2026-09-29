@@ -1,21 +1,41 @@
 {
   "name": "folderorganizer",
   "version": "1.1.0",
-  "description": "",
+  "description": "Automatically organize your files on Windows using customizable rules.",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",
     "dev": "cross-env NODE_ENV=development node index.js",
     "test": "cross-env NODE_ENV=test node --test",
     "build:ui": "node scripts/build-ui.js",
-    "build:installer": "npm run build:ui && node scripts/build-installer.js",
-    "release:patch": "npm version patch -m \"Release v%s\" && git push origin master --follow-tags",
-    "release:minor": "npm version minor -m \"Release v%s\" && git push origin master --follow-tags",
-    "release:major": "npm version major -m \"Release v%s\" && git push origin master --follow-tags",
+    "build:installer": "pnpm run build:ui && node scripts/build-installer.js",
+    "release:patch": "pnpm version patch -m \"Release v%s\" && git push origin master --follow-tags",
+    "release:minor": "pnpm version minor -m \"Release v%s\" && git push origin master --follow-tags",
+    "release:major": "pnpm version major -m \"Release v%s\" && git push origin master --follow-tags",
     "lint": "eslint . --fix"
   },
-  "author": "Freak0121",
-  "license": "ISC",
+  "author": "Sergio Calalpa",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrEaKAlL/FolderOrganizer.git"
+  },
+  "homepage": "https://github.com/FrEaKAlL/FolderOrganizer#readme",
+  "bugs": {
+    "url": "https://github.com/FrEaKAlL/FolderOrganizer/issues"
+  },
+  "keywords": [
+    "folder-organizer",
+    "file-organizer",
+    "windows",
+    "automation",
+    "productivity",
+    "file-management"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@12.6.0",
   "devDependencies": {
     "@eslint/js": "^9.5.0",
     "@flydotio/dockerfile": "^0.7.8",

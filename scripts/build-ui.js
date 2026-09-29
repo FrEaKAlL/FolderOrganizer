@@ -5,7 +5,7 @@ const { execFileSync } = require('node:child_process')
 const projectRoot = path.resolve(__dirname, '..')
 const outputDirectory = path.join(projectRoot, 'dist', 'FolderOrganizer-build')
 const directories = [ 'utils', 'menu', 'process', 'resources' ]
-const files = [ 'index.js', 'package.json', 'package-lock.json', 'start.exe' ]
+const files = [ 'index.js', 'package.json', 'pnpm-lock.yaml', 'start.exe' ]
 
 const retry = async operation => {
   let error
@@ -29,13 +29,21 @@ const copy = source => retry(() => fs.cp(
 ))
 
 const installProductionDependencies = () => {
-  if (!process.env.npm_execpath) {
-    throw new Error('npm_execpath is required to install production dependencies.')
-  }
-
-  execFileSync(process.execPath, [ process.env.npm_execpath, 'ci', '--omit=dev', '--ignore-scripts', '--prefix', outputDirectory ], {
-    stdio: 'inherit'
-  })
+  execFileSync(
+    'pnpm',
+    [
+      'install',
+      '--prod',
+      '--frozen-lockfile',
+      '--ignore-scripts',
+      '--dir',
+      outputDirectory
+    ],
+    {
+      stdio: 'inherit',
+      shell: true
+    }
+  )
 }
 
 const build = async () => {

@@ -232,7 +232,7 @@ You will need:
 From the project root, run:
 
 ``` powershell
-npm run build:installer
+pnpm run build:installer
 ```
 
 The process prepares the application files in:
@@ -251,7 +251,7 @@ If Inno Setup is installed in a custom directory, define `ISCC_PATH` before buil
 
 ``` powershell
 $env:ISCC_PATH = 'C:\path\to\ISCC.exe'
-npm run build:installer
+pnpm run build:installer
 ```
 
 ------------------------------------------------------------------------
