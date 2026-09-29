@@ -1,191 +1,311 @@
 <h1 align="center">
-  <img src="./assets/icon.ico" width="35" stroke="10">
-  Folder Organizer
-  <img src="./assets/icon.ico" width="35">
+  <img src="./assets/icon.ico" width="50" alt="FolderOrganizer">
+  <br>
+  FolderOrganizer
 </h1>
 
 <p align="center">
-  <b>Aplicación de escritorio automatizada para organizar tus archivos por extensión, moviéndolos al instante desde el directorio raíz hacia carpetas clasificadas.</b>
+  <strong>Keep your files organized automatically on Windows.</strong>
 </p>
 
 <p align="center">
-  <a href="https://github.com">
-    <img src="https://img.shields.io/github/package-json/v/FrEaKAlL/FolderOrganizer?color=299de3" alt="GitHub package.json version">
-  </a>
-  <a href="https://opensource.org">
-    <img src="https://img.shields.io/github/license/FrEaKAlL/FolderOrganizer" alt="License: MIT">
-  </a>
+  A lightweight, open-source application that automatically sorts your files using customizable rules.
 </p>
-
----
-
-## 📋 Índice
-
-1. [Planteamiento del Problema](#-planteamiento-del-problema)
-2. [Guía de Instalación y Uso](#-guía-de-instalación-y-uso)
-    - 2.1. [Selección de idioma](#-selección-de-idioma)
-    - 2.2. [Configuración por defecto](#-configuración-por-defecto)
-    - 2.3. [Configuración personalizada](#-configuración-personalizada)
-    - 2.4. [Creación de servicio de Windows (Recomendado)](#-creación-de-servicio-de-windows)
-    - 2.5. [Ejecución manual](#-ejecución-manual-del-aplicativo)
-    - 2.6. [Modificar o usar configuración previa](#-configuración-previa)
-3. [Generar el Instalador (Desarrolladores)](#-generar-el-instalador)
-4. [Tecnologías Utilizadas](#-tecnologías-utilizadas)
-5. [💖 Apoya al Proyecto (Sponsors)](#-apoya-al-proyecto-sponsors)
-
----
-
-## 🧠 Planteamiento del Problema
-
-Cuando descargamos contenido de internet, chats o correos electrónicos, todos los elementos suelen acumularse en una única carpeta raíz (como *Descargas*). Con el tiempo, se vuelve una tarea lenta y tediosa identificar los archivos en uso o realizar un seguimiento correcto de la información.
-
-**FolderOrganizer** resuelve esto automatizando por completo la clasificación de archivos. A través de un servicio en segundo plano o de una ejecución manual rápida, el sistema detecta de forma inmediata los nuevos elementos y los mueve ordenadamente a su respectiva subcarpeta según su extensión o nombre.
-
----
-
-## 🚀 Guía de Instalación y Uso
-
-Realizar la instalación es muy sencillo:
-
-1. Ve a la sección de lanzamientos y descarga el instalador oficial [FolderOrganizer_Installer.exe](https://github.com/download/FolderOrganizer_Installer.exe).
-2. Haz doble clic sobre el archivo descargado para iniciar el asistente guiado (Wizard).
 
 <p align="center">
-  <img src="./assets/instalacion-1.png" alt="Asistente de instalación" width="550">
+  <strong>🇺🇸 English</strong> |
+  <a href="./README.es.md">🇲🇽 Español</a>
 </p>
 
-Una vez concluida la instalación, el aplicativo no arranca por sí solo. Debes buscarlo dentro de tu menú de inicio de Windows.
+<p align="center">
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Download</strong></a>
+  ·
+  <a href="#-quick-installation"><strong>📖 Installation</strong></a>
+  ·
+  <a href="https://github.com/sponsors/FrEaKAlL"><strong>💖 Sponsor</strong></a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Latest release">
+  <img src="https://img.shields.io/badge/platform-Windows-blue" alt="Windows">
+  <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
+  <a href="https://github.com/sponsors/FrEaKAlL">
+    <img src="https://img.shields.io/badge/Sponsor-%E2%9D%A4-ea4aaa?logo=githubsponsors" alt="Sponsor">
+  </a>
+</p>
+
+---
+
+## ✨ What is FolderOrganizer?
+
+Files downloaded from the internet, chats, or email often end up accumulating in a single folder such as **Downloads**.
+
+Over time, finding documents, images, installers, or other important files becomes increasingly difficult.
+
+**FolderOrganizer** automates this task by monitoring the directory you configure and moving files into categorized folders according to their extensions and the rules you define.
+
+It can run:
+
+- 🔄 Automatically as a **Windows Service**.
+- 💻 Manually whenever you want to organize your files.
+- ⚙️ With a predefined folder structure.
+- 🛠️ With custom rules.
+
+------------------------------------------------------------------------
+
+## 👀 Before and after
+
+### Before
+
+``` text
+Downloads/
+├── invoice.pdf
+├── photo.jpg
+├── video.mp4
+├── report.xlsx
+├── installer.exe
+└── document.docx
+```
+
+### After
+
+``` text
+Downloads/
+├── Documents/
+│   ├── invoice.pdf
+│   ├── report.xlsx
+│   └── document.docx
+├── Images/
+│   └── photo.jpg
+├── Videos/
+│   └── video.mp4
+└── Programs/
+    └── installer.exe
+```
+
+> The final structure depends on the folders and rules configured by the user.
+
+------------------------------------------------------------------------
+
+## 🎬 Demo
+
+<p align="center">
+  <img src="./assets/demo.gif" alt="FolderOrganizer automatically organizing files" width="750">
+</p>
+
+------------------------------------------------------------------------
+
+## ⭐ Features
+
+- 📁 Automatic file organization.
+- ⚙️ Customizable rules.
+- 🗂️ File classification by extension.
+- 🔄 Automatic execution through a Windows Service.
+- 💻 Manual execution whenever needed.
+- 🧙 Interactive configuration wizard.
+- 🗣️ Language selection.
+- 💾 Reuse of previous configurations.
+- 📦 Windows installer.
+- 🔓 Open source.
+
+------------------------------------------------------------------------
+
+## 📥 Quick installation
+
+The recommended way to install FolderOrganizer is by using the official installer available from GitHub Releases.
+
+1.  Go to [**Releases**](https://github.com/FrEaKAlL/FolderOrganizer/releases/latest).
+2.  Download `FolderOrganizer_Installer.exe`.
+3.  Run the installer.
+4.  Follow the installation wizard.
+5.  Open **FolderOrganizer** from the Windows Start menu.
+
+### [⬇ Download the latest version](https://github.com/FrEaKAlL/FolderOrganizer/releases/latest)
+
+![Installation wizard](./assets/instalacion-1.png)
 
 > [!NOTE]
-> **Permisos de Administrador:** El aplicativo requiere ejecutarse con privilegios de administrador para poder dar de alta o gestionar el servicio del sistema si decides utilizarlo.
+> **Administrator permissions:** FolderOrganizer requires administrator privileges to register or manage the Windows Service when this option is used.
 
-<p align="center">
-  <img src="./assets/instalacion-2.png" alt="Buscar aplicación en menú inicio" width="400">
-</p>
+After installation, find **FolderOrganizer** in the Windows Start menu.
 
-Al ejecutar el programa, acepta la solicitud de elevación de privilegios de Windows para desplegar la consola interactiva:
+![FolderOrganizer in the Start menu](./assets/instalacion-2.png)
 
-<p align="center">
-  <img src="./assets/instalacion-3.png" alt="Consola inicial de Folder Organizer" width="600">
-</p>
+When you run the application, accept the Windows elevation request to open the interactive console.
 
-### 🗣️ Selección de idioma
-Selecciona tu idioma de preferencia para realizar toda la configuración de la carpeta que vas a organizar.
+![FolderOrganizer console](./assets/instalacion-3.png)
 
-<p align="center">
-  <img src="./assets/instalacion-4.png" alt="Selección de idioma" width="600">
-</p>
+------------------------------------------------------------------------
 
-El sistema te permitirá elegir entre una estructura de organización predefinida (**Por defecto**) o una totalmente adaptada a ti (**Personalizada**).
+## ⚙️ Configuration
 
-<p align="center">
-  <img src="./assets/instalacion-5.png" alt="Selección de tipo de estructura" width="600">
-</p>
+FolderOrganizer includes an interactive wizard that lets you configure how your files should be organized.
 
-### 📁 Configuración por defecto
-Si eliges la opción por defecto, el asistente te mostrará el listado de carpetas estándar que se generarán junto con las extensiones de archivo que el proceso tomará en cuenta automáticamente.
+### 🗣️ Language selection
 
-<p align="center">
-  <img src="./assets/instalacion-6.png" alt="Estructura por defecto" width="600">
-</p>
+Choose your preferred language for the configuration process.
 
-### ⚙️ Configuración personalizada
-Si prefieres un control total, la opción personalizada te guiará a través de una serie de preguntas dinámicas para especificar exactamente qué carpetas y qué extensiones deseas incluir en el flujo de organización.
+![Language selection](./assets/instalacion-4.png)
 
-<p align="center">
-  <img src="./assets/instalacion-7.png" alt="Configuración personalizada" width="600">
-</p>
+The application lets you choose between:
 
-Al finalizar cualquiera de los dos flujos, el sistema te pedirá confirmar si los datos mostrados son correctos para proceder a salvar tu archivo de configuración de forma segura.
+- **Default:** uses a predefined organization structure.
+- **Custom:** lets you choose the folders and file extensions you want to use.
 
-### 🔄 Creación de servicio de Windows
-Configurar el asistente como un Servicio de Windows permite automatizar el proceso por completo. En cuanto un archivo llegue al directorio raíz seleccionado, el sistema lo moverá inmediatamente sin que tengas que abrir interfaces.
+![Organization type selection](./assets/instalacion-5.png)
 
-<p align="center">
-  <img src="./assets/instalacion-8.png" alt="Pregunta para crear servicio" width="600">
-</p>
+### 📁 Default configuration
 
-Una vez creado con éxito, verás el mensaje de confirmación en la consola. Puedes presionar cualquier tecla para cerrar la ventana.
+The default configuration displays the standard folders that will be created along with the file extensions FolderOrganizer will use for automatic classification.
+
+![Default structure](./assets/instalacion-6.png)
+
+### 🛠️ Custom configuration
+
+Custom configuration gives you greater control by allowing you to specify which folders and extensions should be included in the organization process.
+
+![Custom configuration](./assets/instalacion-7.png)
+
+At the end of either configuration flow, FolderOrganizer asks you to confirm the settings before saving your preferences.
+
+------------------------------------------------------------------------
+
+## 🔄 Windows Service automation
+
+The recommended way to use FolderOrganizer is through a **Windows Service**.
+
+When the service is active, FolderOrganizer runs silently in the background and automatically organizes files that arrive in the configured directory.
+
+![Create Windows Service prompt](./assets/instalacion-8.png)
+
+Once the service has been created successfully, the console displays a confirmation message.
 
 > [!TIP]
-> **Recomendación:** Se sugiere activar el servicio de Windows para desentenderte por completo de la ejecución manual; el sistema trabajará silenciosamente por ti.
+> Using the Windows Service fully automates the process and removes the need to run FolderOrganizer manually.
 
-Puedes verificar el estado de la automatización en la herramienta nativa de **Servicios de Windows** bajo el nombre de `FolderOrganizer`.
+You can verify the service status from the Windows **Services** management tool. The service is registered as:
 
-<p align="center">
-  <img src="./assets/instalacion-9.png" alt="Servicio registrado en Windows" width="600">
-</p>
+``` text
+FolderOrganizer
+```
 
-### 💻 Ejecución manual del aplicativo
-Si prefieres no instalar tareas en segundo plano, simplemente selecciona que **no** deseas crear el servicio. El sistema te preguntará inmediatamente si deseas ejecutar la organización de archivos de forma manual en ese preciso momento.
+![FolderOrganizer Windows Service](./assets/instalacion-9.png)
 
-<p align="center">
-  <img src="./assets/instalacion-12.png" alt="Ejecución manual" width="600">
-</p>
+------------------------------------------------------------------------
 
-### 📝 Configuración previa
-A partir de la segunda vez que abras la aplicación, FolderOrganizer detectará tus preferencias previas y te preguntará si deseas mantenerlas o sobreescribirlas con una nueva estructura.
+## 💻 Manual execution
 
-* Si decides **continuar con la configuración previa**, pasarás directo a las opciones de ejecución ([Servicio](#-creación-de-servicio-de-windows) o [Manual](#-ejecución-manual-del-aplicativo)).
+If you prefer not to install the Windows Service, FolderOrganizer can also be run manually.
 
-<p align="center">
-  <img src="./assets/instalacion-11.png" alt="Cargar configuración previa" width="600">
-</p>
+During configuration, choose **not** to create the service. The application will ask whether you want to organize the files immediately.
 
-* Si requieres modificar las reglas de filtrado, responde `n` para iniciar el asistente desde cero.
+![Manual execution](./assets/instalacion-12.png)
 
-<p align="center">
-  <img src="./assets/instalacion-10.png" alt="Reconfigurar carpetas" width="600">
-</p>
+------------------------------------------------------------------------
 
----
+## 📝 Previous configuration
 
-## 🔧 Generar el Instalador
+From the second run onward, FolderOrganizer detects whether a previous configuration exists.
 
-Si deseas auditar, modificar el código o compilar el instalador ejecutable por tu cuenta, necesitarás tener instalado **Node.js** e **Inno Setup 6** en tu equipo de desarrollo.
+You can keep using the existing configuration or create a new one.
 
-Ejecuta el siguiente comando desde la raíz de tu espacio de trabajo:
+![Load previous configuration](./assets/instalacion-11.png)
 
-```powershell
+If you need to modify the organization rules, select `n` to start the wizard again.
+
+![Reconfigure folders](./assets/instalacion-10.png)
+
+------------------------------------------------------------------------
+
+## 👨‍💻 For developers
+
+FolderOrganizer is open source. You can inspect the code, modify it, and build your own installer.
+
+### 🔧 Build the installer
+
+You will need:
+
+- **Node.js**
+- **Inno Setup 6**
+
+From the project root, run:
+
+``` powershell
 npm run build:installer
 ```
 
-Este script automatizado se encargará de preparar los archivos en la ruta `dist/FolderOrganizer-build`, resolver las dependencias exclusivas de producción y empaquetar el asistente ejecutable final en: `dist/FolderOrganizer-Installer/FolderOrganizer_Installer.exe`.
+The process prepares the application files in:
 
-Si tienes tu instalación de Inno Setup en un directorio personalizado, recuerda declarar la ruta del ejecutable `ISCC.exe` antes de lanzar la compilación:
+``` text
+dist/FolderOrganizer-build
+```
 
-```powershell
-$env:ISCC_PATH = 'C:\ruta\a\ISCC.exe'
+and generates the installer at:
+
+``` text
+dist/FolderOrganizer-Installer/FolderOrganizer_Installer.exe
+```
+
+If Inno Setup is installed in a custom directory, define `ISCC_PATH` before building:
+
+``` powershell
+$env:ISCC_PATH = 'C:\path\to\ISCC.exe'
 npm run build:installer
 ```
 
----
+------------------------------------------------------------------------
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies
 
-### Lógica y Core de la Aplicación
-* **Node.js** - Entorno de ejecución para Javascript.
-* **Inquirer** - Framework interactivo para flujos de respuesta en consola de comandos.
-* **Node-windows** - API de comunicación e instalación de scripts como servicios nativos de Windows.
-* **Color** - Formateador visual para mejorar la legibilidad de la interfaz CLI.
-* **Eslint** & **Cross-env** - Herramientas de calidad de código y gestión de entornos.
+### Application logic and core
 
-### Empaquetado y Diseño Visual
-* **Inno Setup Compiler** - Motor de creación de instaladores para sistemas Windows.
-* **bat-to-exe-converter** - Utilidad de puente para scripts de ejecución.
-* **Inkscape** - Software de diseño vectorial utilizado para la creación del ícono oficial del programa.
+- **Node.js** — JavaScript runtime.
+- **Inquirer** — interactive command-line configuration wizard.
+- **node-windows** — Windows Service integration and installation.
+- **Color** — visual formatting for the CLI.
+- **ESLint** — code quality tooling.
+- **cross-env** — environment variable management.
 
----
+### Packaging
 
-## 💖 Apoya al Proyecto (Sponsors)
+- **Inno Setup Compiler** — Windows installer generation.
+- **bat-to-exe-converter** — utility used to package execution scripts.
+- **Inkscape** — used to create the FolderOrganizer icon.
 
-**FolderOrganizer** es una herramienta de código abierto desarrollada y mantenida de forma independiente durante mi tiempo libre. Si esta aplicación te ayuda a ahorrar tiempo todos los días, mantiene tus directorios limpios o deseas apoyar mis inicios como desarrollador de software, considera realizar una contribución:
+------------------------------------------------------------------------
 
-* ☕ [**Invítame un café a través de Ko-fi**](https://ko-fi.com/FrEaKAlL)
-* 💗 [**Conviértete en Patrocinador Oficial en GitHub Sponsors**](https://github.com/sponsors/FrEaKAlL)
+## 🤝 Contributing
 
-¡Cualquier nivel de apoyo impulsa enormemente el mantenimiento del código, la corrección de errores y el desarrollo de nuevas funciones!
+Contributions are welcome.
 
----
-*Diseñado con dedicación por [FrEaKAlL](https://github.com)*
+If you would like to report a bug, suggest a feature, or contribute code, please read our [contribution guide](./CONTRIBUTING.md).
 
+You can also support the project by leaving a ⭐ on the repository.
+
+------------------------------------------------------------------------
+
+## 💖 Support the project
+
+**FolderOrganizer** is an open-source tool developed and maintained independently.
+
+If you find it useful and would like to support its maintenance and future development:
+
+- ☕ [**Support me on Ko-fi**](https://ko-fi.com/FrEaKAlL)
+- 💗 [**Become a GitHub Sponsor**](https://github.com/sponsors/FrEaKAlL)
+
+Your support helps fund maintenance, bug fixes, documentation, and new features.
+
+------------------------------------------------------------------------
+
+## 📄 License
+
+FolderOrganizer is distributed under the **MIT License**.
+
+See [`LICENSE`](./LICENSE) for more information.
+
+------------------------------------------------------------------------
+
+Developed by [**FrEaKAlL**](https://github.com/FrEaKAlL).
+
+If FolderOrganizer is useful to you, consider leaving a ⭐ on the repository.
