@@ -1,0 +1,69 @@
+name: Feature request
+description: Suggest an idea or improvement for FolderOrganizer.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve FolderOrganizer.
+
+        Describe the problem you want to solve and how the proposed feature could improve the application.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: What problem would this feature solve?
+      placeholder: Describe the problem or limitation you currently have.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe how you think the feature should work.
+      placeholder: Explain your proposed solution.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Example use case
+      description: Give an example of how you would use this feature.
+      placeholder: |
+        Example:
+        I want FolderOrganizer to monitor multiple folders so that...
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Have you tried another way to solve this problem?
+
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How important is this feature to you?
+      options:
+        - Nice to have
+        - Useful
+        - Important for my workflow
+        - Required for my workflow
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add screenshots, examples or any other useful information.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked that a similar feature has not already been requested.
+          required: true
