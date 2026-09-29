@@ -181,8 +181,8 @@ npm run build:installer
 
 **FolderOrganizer** es una herramienta de código abierto desarrollada y mantenida de forma independiente durante mi tiempo libre. Si esta aplicación te ayuda a ahorrar tiempo todos los días, mantiene tus directorios limpios o deseas apoyar mis inicios como desarrollador de software, considera realizar una contribución:
 
-* ☕ [**Invítame un café a través de Ko-fi**](https://ko-fi.com)
-* 💗 [**Conviértete en Patrocinador Oficial en GitHub Sponsors**](https://github.com)
+* ☕ [**Invítame un café a través de Ko-fi**](https://ko-fi.com/FrEaKAlL)
+* 💗 [**Conviértete en Patrocinador Oficial en GitHub Sponsors**](https://github.com/sponsors/FrEaKAlL)
 
 ¡Cualquier nivel de apoyo impulsa enormemente el mantenimiento del código, la corrección de errores y el desarrollo de nuevas funciones!
 
