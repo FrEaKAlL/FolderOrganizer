@@ -39,16 +39,15 @@
   "packageManager": "pnpm@12.6.0",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@flydotio/dockerfile": "^0.7.8",
     "@stylistic/eslint-plugin": "^5.10.0",
     "eslint": "^10.11.0",
     "globals": "^17.12.0"
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "consola": "^3.4.1",
-    "cross-env": "^7.0.3",
-    "inquirer": "^12.4.3"
+    "consola": "^3.4.2",
+    "cross-env": "^10.1.0",
+    "inquirer": "^14.2.2"
   },
   "optionalDependencies": {
     "node-windows": "^1.0.0-beta.8"
