@@ -12,7 +12,8 @@
     "release:patch": "pnpm version patch -m \"Release v%s\" && git push origin master --follow-tags",
     "release:minor": "pnpm version minor -m \"Release v%s\" && git push origin master --follow-tags",
     "release:major": "pnpm version major -m \"Release v%s\" && git push origin master --follow-tags",
-    "lint": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "lint": "eslint ."
   },
   "author": "Sergio Calalpa",
   "license": "MIT",
@@ -37,11 +38,11 @@
   },
   "packageManager": "pnpm@12.6.0",
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
+    "@eslint/js": "^10.0.1",
     "@flydotio/dockerfile": "^0.7.8",
-    "@stylistic/eslint-plugin-js": "^2.2.2",
-    "eslint": "^9.22.0",
-    "globals": "^15.6.0"
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0"
   },
   "dependencies": {
     "colors": "^1.4.0",

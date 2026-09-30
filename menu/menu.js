@@ -121,7 +121,7 @@ const normalProcess = async () => {
   const lng = await language()
   const text = (lng === 'ingles') ? resourcesIng.ing : resourcesEsp.esp
   const path = await pathOrganizer(text)
-  let optionType = 'default'
+  let optionType
   let configurationCustom = []
   do {
     optionType = (await typeConfig(text))

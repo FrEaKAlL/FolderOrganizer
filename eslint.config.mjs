@@ -1,50 +1,53 @@
-import globals from "globals";
-import stylisticJs from '@stylistic/eslint-plugin-js'
 import js from '@eslint/js'
+import stylistic from '@stylistic/eslint-plugin'
+import globals from 'globals'
 
 export default [
-  js.configs.recommended,
   {
-    files: ["**/*.js"],
+    ignores: [
+      'dist/**',
+      'build/**',
+      'node_modules/**',
+      'coverage/**',
+    ],
+  },
+
+  js.configs.recommended,
+
+  {
+    files: ['**/*.js'],
+
     languageOptions: {
-      sourceType: "commonjs",
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
       globals: {
         ...globals.node,
       },
-      ecmaVersion: "latest",
     },
+
     plugins: {
-      '@stylistic/js': stylisticJs
+      '@stylistic': stylistic,
     },
+
     rules: {
-      '@stylistic/js/indent': [
-        'error',
-        2
-      ],
-      '@stylistic/js/linebreak-style': [
-        'error',
-        'unix'
-      ],
-      '@stylistic/js/quotes': [
-        'error',
-        'single'
-      ],
-      '@stylistic/js/semi': [
-        'error',
-        'never'
-      ],
-      'eqeqeq': 'error',
-      'no-trailing-spaces': 'error',
-      'object-curly-spacing': [
-        'error', 'always'
-      ],
-      'arrow-spacing': [
-        'error', { 'before': true, 'after': true },
-      ],
+      // Calidad
+      eqeqeq: 'error',
       'no-console': 'off',
+
+      // Estilo
+      '@stylistic/indent': ['error', 2],
+      '@stylistic/linebreak-style': ['error', 'unix'],
+      '@stylistic/quotes': ['error', 'single'],
+      '@stylistic/semi': ['error', 'never'],
+      '@stylistic/no-trailing-spaces': 'error',
+      '@stylistic/object-curly-spacing': ['error', 'always'],
+      '@stylistic/arrow-spacing': [
+        'error',
+        {
+          before: true,
+          after: true,
+        },
+      ],
     },
-  },
-  { 
-    ignores: ["dist/**", "build/**"],
   },
 ]
