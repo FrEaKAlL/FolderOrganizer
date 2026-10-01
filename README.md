@@ -5,11 +5,11 @@
 </h1>
 
 <p align="center">
-  <strong>Keep your files organized automatically on Windows.</strong>
+  <strong>Keep your files organized automatically on Windows and Linux.</strong>
 </p>
 
 <p align="center">
-  A lightweight, open-source application that automatically sorts your files using customizable rules.
+  A lightweight, open-source application that automatically sorts your files using customizable rules on Windows and Linux.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Latest release">
-  <img src="https://img.shields.io/badge/platform-Windows-blue" alt="Windows">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blue" alt="Windows and Linux">
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
   <a href="https://github.com/sponsors/FrEaKAlL">
@@ -47,7 +47,7 @@ Over time, finding documents, images, installers, or other important files becom
 
 It can run:
 
-- 🔄 Automatically as a **Windows Service**.
+- 🔄 Automatically as a **Windows Service** or **systemd service on Linux**.
 - 💻 Manually whenever you want to organize your files.
 - ⚙️ With a predefined folder structure.
 - 🛠️ With custom rules.
@@ -106,7 +106,7 @@ Downloads/
 - 🧙 Interactive configuration wizard.
 - 🗣️ Language selection.
 - 💾 Reuse of previous configurations.
-- 📦 Windows installer.
+- 📦 Windows installer and Linux-compatible runtime.
 - 🔓 Open source.
 
 ------------------------------------------------------------------------
@@ -132,7 +132,7 @@ After installation, find **FolderOrganizer** in the Windows Start menu.
 
 ![FolderOrganizer in the Start menu](./assets/instalacion-2.png)
 
-When you run the application, accept the Windows elevation request to open the interactive console.
+The interactive application runs with normal user permissions. Administrator elevation is requested only when FolderOrganizer needs to register or manage the Windows Service.
 
 ![FolderOrganizer console](./assets/instalacion-3.png)
 
@@ -262,7 +262,7 @@ pnpm run build:installer
 
 - **Node.js** — JavaScript runtime.
 - **Inquirer** — interactive command-line configuration wizard.
-- **node-windows** — Windows Service integration and installation.
+- **node-windows** — Windows Service integration and installation.\n- **systemd** — background service integration on Linux.
 - **Color** — visual formatting for the CLI.
 - **ESLint** — code quality tooling.
 - **cross-env** — environment variable management.
@@ -275,7 +275,7 @@ pnpm run build:installer
 
 ------------------------------------------------------------------------
 
-## 🤝 Contributing
+## 🗺️ Roadmap\n\nDevelopment priorities and planned improvements are tracked in [`ROADMAP.md`](./ROADMAP.md). Release history is available in [`CHANGELOG.md`](./CHANGELOG.md).\n\n> Linux support is included in the codebase, but Windows remains the primary validated distribution for v1.2.0.\n\n------------------------------------------------------------------------\n\n## 🤝 Contributing
 
 Contributions are welcome.
 
