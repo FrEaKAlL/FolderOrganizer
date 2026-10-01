@@ -21,10 +21,10 @@ body:
       required: true
 
   - type: dropdown
-    id: windows-version
+    id: operating-system
     attributes:
-      label: Windows version
-      description: Which version of Windows are you using?
+      label: Operating system
+      description: Which operating system are you using?
       options:
         - Windows 11
         - Windows 10
