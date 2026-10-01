@@ -270,7 +270,6 @@ pnpm run build:installer
 ### Empaquetado
 
 - **Inno Setup Compiler** — generación del instalador para Windows.
-- **bat-to-exe-converter** — utilidad para empaquetar scripts de ejecución.
 - **Inkscape** — utilizado para la creación del icono de FolderOrganizer.
 
 ------------------------------------------------------------------------
