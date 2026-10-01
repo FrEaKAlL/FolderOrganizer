@@ -1,0 +1,16 @@
+# Normalize text files in the repository to LF.
+# This keeps ESLint results consistent on Windows and Linux.
+* text=auto eol=lf
+
+# Windows command scripts must use CRLF for cmd.exe compatibility.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Binary assets must never be line-ending normalized.
+*.ico binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.exe binary
+*.zip binary
