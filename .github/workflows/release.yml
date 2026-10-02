@@ -38,7 +38,7 @@ jobs:
         run: pnpm test
 
       - name: Install Inno Setup
-        run: choco install innosetup --no-progress --limit-output --yes
+        run: choco install innosetup --version=6.7.1 --no-progress --limit-output --yes
 
       - name: Verify release version
         shell: pwsh
@@ -52,7 +52,7 @@ jobs:
         run: pnpm run build:installer
 
       - name: Upload installer artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: FolderOrganizer-Installer
           path: dist/FolderOrganizer-Installer/FolderOrganizer_Installer.exe
@@ -66,7 +66,7 @@ jobs:
 
     steps:
       - name: Download installer artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: FolderOrganizer-Installer
           path: dist
