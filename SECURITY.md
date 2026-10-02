@@ -1,5 +1,7 @@
 # Security Policy
 
+**English** | [Español](./SECURITY.es.md)
+
 ## Supported versions
 
 Security fixes are currently evaluated for the latest published version of FolderOrganizer.
