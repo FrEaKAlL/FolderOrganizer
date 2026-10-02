@@ -269,7 +269,8 @@ pnpm run build:installer
 
 - **Node.js** — JavaScript runtime.
 - **Inquirer** — interactive command-line configuration wizard.
-- **node-windows** — Windows Service integration and installation.\n- **systemd** — background service integration on Linux.
+- **node-windows** — Windows Service integration and installation.
+- **systemd** — background service integration on Linux.
 - **Color** — visual formatting for the CLI.
 - **ESLint** — code quality tooling.
 - **cross-env** — environment variable management.
@@ -281,7 +282,15 @@ pnpm run build:installer
 
 ------------------------------------------------------------------------
 
-## 🗺️ Roadmap\n\nDevelopment priorities and planned improvements are tracked in [`ROADMAP.md`](./ROADMAP.md). Release history is available in [`CHANGELOG.md`](./CHANGELOG.md).\n\n> Linux support is included in the codebase, but Windows remains the primary validated distribution for v1.2.0.\n\n------------------------------------------------------------------------\n\n## 🤝 Contributing
+## 🗺️ Roadmap
+
+Development priorities and planned improvements are tracked in [`ROADMAP.md`](./ROADMAP.md). Release history is available in [`CHANGELOG.md`](./CHANGELOG.md).
+
+> Linux support is included in the codebase, but Windows remains the primary validated distribution for v1.2.0.
+
+------------------------------------------------------------------------
+
+## 🤝 Contributing
 
 Contributions are welcome.
 
