@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Download</strong></a>
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Download v1.2.0</strong></a>
   ·
   <a href="#-quick-installation"><strong>📖 Installation</strong></a>
   ·
@@ -26,7 +26,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Latest release">
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Latest release"></a>
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/actions/workflows/release.yml"><img src="https://github.com/FrEaKAlL/FolderOrganizer/actions/workflows/release.yml/badge.svg" alt="Release workflow"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blue" alt="Windows and Linux">
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
@@ -51,6 +52,14 @@ It can run:
 - 💻 Manually whenever you want to organize your files.
 - ⚙️ With a predefined folder structure.
 - 🛠️ With custom rules.
+
+------------------------------------------------------------------------
+
+## 🎬 See it in action
+
+<p align="center">
+  <img src="./assets/demo.gif" alt="FolderOrganizer automatically organizing files" width="750">
+</p>
 
 ------------------------------------------------------------------------
 
@@ -88,14 +97,6 @@ Downloads/
 
 ------------------------------------------------------------------------
 
-## 🎬 Demo
-
-<p align="center">
-  <img src="./assets/demo.gif" alt="FolderOrganizer automatically organizing files" width="750">
-</p>
-
-------------------------------------------------------------------------
-
 ## ⭐ Features
 
 - 📁 Automatic file organization.
@@ -106,14 +107,16 @@ Downloads/
 - 🧙 Interactive configuration wizard.
 - 🗣️ Language selection.
 - 💾 Reuse of previous configurations.
-- 📦 Windows installer and Linux-compatible runtime.
+- 📦 Validated Windows installer and Linux-compatible runtime.
 - 🔓 Open source.
 
 ------------------------------------------------------------------------
 
 ## 📥 Quick installation
 
-The recommended way to install FolderOrganizer is by using the official installer available from GitHub Releases.
+### Windows
+
+The recommended and validated installation for **v1.2.0** is the official Windows installer available from GitHub Releases.
 
 1.  Go to [**Releases**](https://github.com/FrEaKAlL/FolderOrganizer/releases/latest).
 2.  Download `FolderOrganizer_Installer.exe`.
@@ -135,6 +138,10 @@ After installation, find **FolderOrganizer** in the Windows Start menu.
 The interactive application runs with normal user permissions. Administrator elevation is requested only when FolderOrganizer needs to register or manage the Windows Service.
 
 ![FolderOrganizer console](./assets/instalacion-3.png)
+
+### Linux
+
+Linux support is included in the codebase and can run with **systemd**, but it has not yet completed the same real-world distribution validation as the Windows installer. For v1.2.0, Windows remains the primary validated distribution.
 
 ------------------------------------------------------------------------
 
