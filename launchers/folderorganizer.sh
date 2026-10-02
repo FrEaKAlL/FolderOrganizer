@@ -5,7 +5,7 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$SCRIPT_DIR"
 
 if ! command -v node >/dev/null 2>&1; then
-  echo "FolderOrganizer requires Node.js 22 or newer." >&2
+  echo "FolderOrganizer requires Node.js 22.13.0 or newer." >&2
   exit 1
 fi
 
