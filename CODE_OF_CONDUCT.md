@@ -1,5 +1,7 @@
 # Code of Conduct
 
+**English** | [Español](./CODE_OF_CONDUCT.es.md)
+
 ## Our commitment
 
 FolderOrganizer aims to provide a welcoming, respectful, and constructive environment for everyone participating in the project.
