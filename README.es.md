@@ -269,7 +269,8 @@ pnpm run build:installer
 
 - **Node.js** — entorno de ejecución de JavaScript.
 - **Inquirer** — asistente interactivo para la configuración mediante consola.
-- **node-windows** — integración e instalación del proceso como Servicio de Windows.\n- **systemd** — integración del servicio en segundo plano para Linux.
+- **node-windows** — integración e instalación del proceso como Servicio de Windows.
+- **systemd** — integración del servicio en segundo plano para Linux.
 - **Color** — formato visual de la interfaz CLI.
 - **ESLint** — control de calidad del código.
 - **cross-env** — gestión de variables de entorno.
@@ -281,7 +282,15 @@ pnpm run build:installer
 
 ------------------------------------------------------------------------
 
-## 🗺️ Roadmap\n\nLas prioridades de desarrollo y mejoras planeadas se encuentran en [`ROADMAP.md`](./ROADMAP.md). El historial de versiones está disponible en [`CHANGELOG.md`](./CHANGELOG.md).\n\n> El código incluye soporte para Linux, pero Windows continúa siendo la distribución principal validada para v1.2.0.\n\n------------------------------------------------------------------------\n\n## 🤝 Contribuir
+## 🗺️ Roadmap
+
+Las prioridades de desarrollo y mejoras planeadas se encuentran en [`ROADMAP.md`](./ROADMAP.md). El historial de versiones está disponible en [`CHANGELOG.md`](./CHANGELOG.md).
+
+> El código incluye soporte para Linux, pero Windows continúa siendo la distribución principal validada para v1.2.0.
+
+------------------------------------------------------------------------
+
+## 🤝 Contribuir
 
 Las contribuciones son bienvenidas.
 
