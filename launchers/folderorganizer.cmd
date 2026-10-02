@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 where node >nul 2>&1
 if errorlevel 1 (
-  echo FolderOrganizer requires Node.js 22 or newer.
+  echo FolderOrganizer requires Node.js 22.13.0 or newer.
   echo Install Node.js and try again.
   pause
   exit /b 1

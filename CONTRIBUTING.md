@@ -26,7 +26,7 @@ Keep pull requests focused on one change whenever possible. For larger changes, 
 
 FolderOrganizer currently requires:
 
-- **Node.js 22 or newer**;
+- **Node.js 22.13.0 or newer**;
 - **pnpm 12.6.0**;
 - **Inno Setup 6** only when building the Windows installer.
 
