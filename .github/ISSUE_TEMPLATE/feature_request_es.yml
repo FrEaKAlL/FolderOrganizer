@@ -1,0 +1,69 @@
+name: Solicitar una mejora
+description: Sugiere una idea o mejora para FolderOrganizer.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por ayudar a mejorar FolderOrganizer.
+
+        Describe el problema que deseas resolver y cómo la funcionalidad propuesta podría mejorar la aplicación.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o necesidad
+      description: ¿Qué problema resolvería esta funcionalidad?
+      placeholder: Describe el problema o limitación que tienes actualmente.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución propuesta
+      description: Describe cómo consideras que debería funcionar la característica.
+      placeholder: Explica tu solución propuesta.
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Ejemplo de uso
+      description: Proporciona un ejemplo de cómo utilizarías esta funcionalidad.
+      placeholder: |
+        Ejemplo:
+        Quiero que FolderOrganizer supervise varias carpetas para que...
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+      description: ¿Has intentado resolver este problema de otra manera?
+
+  - type: dropdown
+    id: importance
+    attributes:
+      label: ¿Qué tan importante es esta funcionalidad para ti?
+      options:
+        - Sería bueno tenerla
+        - Útil
+        - Importante para mi flujo de trabajo
+        - Necesaria para mi flujo de trabajo
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Contexto adicional
+      description: Agrega capturas de pantalla, ejemplos o cualquier otra información útil.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Verifiqué que no exista una solicitud similar.
+          required: true
