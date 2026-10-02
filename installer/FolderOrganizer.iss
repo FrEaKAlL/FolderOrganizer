@@ -49,17 +49,103 @@ Type: filesandordirs; Name: "{app}\process\daemon"
 
 [Code]
 
+function IsNodeVersionSupported(const VersionText: String): Boolean;
+var
+  CleanVersion: String;
+  MajorVersion: Integer;
+  MinorVersion: Integer;
+  PatchVersion: Integer;
+  Dot1: Integer;
+  Dot2: Integer;
+begin
+  Result := False;
+
+  CleanVersion := Trim(VersionText);
+
+  { node --version normally returns something like v24.12.0 }
+  if (Length(CleanVersion) > 0) and
+     ((CleanVersion[1] = 'v') or (CleanVersion[1] = 'V')) then
+    Delete(CleanVersion, 1, 1);
+
+  Dot1 := Pos('.', CleanVersion);
+  if Dot1 = 0 then Exit;
+
+  MajorVersion := StrToIntDef(Copy(CleanVersion, 1, Dot1 - 1), -1);
+  Delete(CleanVersion, 1, Dot1);
+
+  Dot2 := Pos('.', CleanVersion);
+  if Dot2 = 0 then Exit;
+
+  MinorVersion := StrToIntDef(Copy(CleanVersion, 1, Dot2 - 1), -1);
+  PatchVersion := StrToIntDef(Copy(CleanVersion, Dot2 + 1, Length(CleanVersion)), -1);
+
+  if (MajorVersion < 0) or
+     (MinorVersion < 0) or
+     (PatchVersion < 0) then
+    Exit;
+
+  Result :=
+    (MajorVersion > 22) or
+    ((MajorVersion = 22) and (MinorVersion > 13)) or
+    ((MajorVersion = 22) and (MinorVersion = 13) and (PatchVersion >= 0));
+end;
+
 function InitializeSetup(): Boolean;
 var
   ResultCode: Integer;
+  NodeVersion: AnsiString;
+  NodeVersionText: String;
+  TempFile: String;
 begin
-  Result := Exec(ExpandConstant('{cmd}'), '/d /c node --version', '', SW_HIDE, ewWaitUntilTerminated, ResultCode) and (ResultCode = 0);
-  if not Result then
+  Result := False;
+  TempFile := ExpandConstant('{tmp}\folderorganizer-node-version.txt');
+
+  DeleteFile(TempFile);
+
+  if not Exec(
+    ExpandConstant('{cmd}'),
+    '/d /c node --version > "' + TempFile + '" 2>&1',
+    '',
+    SW_HIDE,
+    ewWaitUntilTerminated,
+    ResultCode
+  ) or (ResultCode <> 0) then
+  begin
     MsgBox(
-      'Folder Organizer requires Node.js 22 or newer. Install Node.js before running this installer.',
+      'Folder Organizer requires Node.js 22.13.0 or newer.' + #13#10 + #13#10 +
+      'Install or update Node.js before running this installer.',
       mbError,
       MB_OK
     );
+    Exit;
+  end;
+
+  if not LoadStringFromFile(TempFile, NodeVersion) then
+  begin
+    MsgBox(
+      'Folder Organizer could not determine the installed Node.js version.',
+      mbError,
+      MB_OK
+    );
+    Exit;
+  end;
+
+  DeleteFile(TempFile);
+
+  NodeVersionText := String(NodeVersion);
+
+  if not IsNodeVersionSupported(NodeVersionText) then
+  begin
+    MsgBox(
+      'Folder Organizer requires Node.js 22.13.0 or newer.' + #13#10 + #13#10 +
+      'Detected version: ' + Trim(NodeVersionText),
+      mbError,
+      MB_OK
+    );
+    Exit;
+  end;
+
+  Result := True;
 end;
 
 function ServiceExistsByName(const ServiceName: String): Boolean;
