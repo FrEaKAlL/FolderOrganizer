@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Descargar v1.2.0</strong></a>
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Descargar última versión</strong></a>
   ·
   <a href="#-instalación-rápida"><strong>📖 Instalación</strong></a>
   ·
