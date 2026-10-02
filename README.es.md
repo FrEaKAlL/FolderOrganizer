@@ -18,7 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Descargar</strong></a>
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><strong>⬇ Descargar última versión</strong></a>
   ·
   <a href="#-instalación-rápida"><strong>📖 Instalación</strong></a>
   ·
@@ -26,7 +26,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Última versión">
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/releases/latest"><img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Última versión"></a>
+  <a href="https://github.com/FrEaKAlL/FolderOrganizer/actions/workflows/release.yml"><img src="https://github.com/FrEaKAlL/FolderOrganizer/actions/workflows/release.yml/badge.svg" alt="Workflow de release"></a>
   <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blue" alt="Windows y Linux">
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="Licencia MIT">
@@ -51,6 +52,14 @@ Puede ejecutarse:
 - 💻 Manualmente cuando necesites organizar tus archivos.
 - ⚙️ Con una estructura predeterminada.
 - 🛠️ Con reglas personalizadas.
+
+------------------------------------------------------------------------
+
+## 🎬 Mira cómo funciona
+
+<p align="center">
+  <img src="./assets/demo.gif" alt="FolderOrganizer organizando archivos automáticamente" width="750">
+</p>
 
 ------------------------------------------------------------------------
 
@@ -88,14 +97,6 @@ Downloads/
 
 ------------------------------------------------------------------------
 
-## 🎬 Demostración
-
-<p align="center">
-  <img src="./assets/demo.gif" alt="FolderOrganizer organizando archivos automáticamente" width="750">
-</p>
-
-------------------------------------------------------------------------
-
 ## ⭐ Características
 
 - 📁 Organización automática de archivos.
@@ -106,14 +107,16 @@ Downloads/
 - 🧙 Asistente interactivo de configuración.
 - 🗣️ Selección de idioma.
 - 💾 Reutilización de configuraciones anteriores.
-- 📦 Instalador para Windows y runtime compatible con Linux.
+- 📦 Instalador validado para Windows y runtime compatible con Linux.
 - 🔓 Código abierto.
 
 ------------------------------------------------------------------------
 
 ## 📥 Instalación rápida
 
-La forma recomendada de instalar FolderOrganizer es mediante el instalador oficial disponible en GitHub Releases.
+### Windows
+
+La instalación recomendada y validada para **v1.2.0** es el instalador oficial para Windows disponible en GitHub Releases.
 
 1.  Ve a [**Releases**](https://github.com/FrEaKAlL/FolderOrganizer/releases/latest).
 2.  Descarga `FolderOrganizer_Installer.exe`.
@@ -135,6 +138,10 @@ Una vez concluida la instalación, busca **FolderOrganizer** dentro del menú In
 La aplicación interactiva se ejecuta con permisos normales de usuario. La elevación de administrador se solicita únicamente cuando FolderOrganizer necesita registrar o administrar el Servicio de Windows.
 
 ![Consola inicial de FolderOrganizer](./assets/instalacion-3.png)
+
+### Linux
+
+El código incluye soporte para Linux y ejecución mediante **systemd**, pero todavía no ha completado el mismo nivel de validación en entornos reales que el instalador de Windows. Para v1.2.0, Windows continúa siendo la distribución principal validada.
 
 ------------------------------------------------------------------------
 
@@ -262,7 +269,8 @@ pnpm run build:installer
 
 - **Node.js** — entorno de ejecución de JavaScript.
 - **Inquirer** — asistente interactivo para la configuración mediante consola.
-- **node-windows** — integración e instalación del proceso como Servicio de Windows.\n- **systemd** — integración del servicio en segundo plano para Linux.
+- **node-windows** — integración e instalación del proceso como Servicio de Windows.
+- **systemd** — integración del servicio en segundo plano para Linux.
 - **Color** — formato visual de la interfaz CLI.
 - **ESLint** — control de calidad del código.
 - **cross-env** — gestión de variables de entorno.
@@ -274,7 +282,15 @@ pnpm run build:installer
 
 ------------------------------------------------------------------------
 
-## 🗺️ Roadmap\n\nLas prioridades de desarrollo y mejoras planeadas se encuentran en [`ROADMAP.md`](./ROADMAP.md). El historial de versiones está disponible en [`CHANGELOG.md`](./CHANGELOG.md).\n\n> El código incluye soporte para Linux, pero Windows continúa siendo la distribución principal validada para v1.2.0.\n\n------------------------------------------------------------------------\n\n## 🤝 Contribuir
+## 🗺️ Roadmap
+
+Las prioridades de desarrollo y mejoras planeadas se encuentran en [`ROADMAP.md`](./ROADMAP.md). El historial de versiones está disponible en [`CHANGELOG.md`](./CHANGELOG.md).
+
+> El código incluye soporte para Linux, pero Windows continúa siendo la distribución principal validada para v1.2.0.
+
+------------------------------------------------------------------------
+
+## 🤝 Contribuir
 
 Las contribuciones son bienvenidas.
 
