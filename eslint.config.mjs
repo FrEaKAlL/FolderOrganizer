@@ -36,7 +36,8 @@ export default [
 
       // Estilo
       '@stylistic/indent': ['error', 2],
-      '@stylistic/linebreak-style': ['error', 'unix'],
+      // Git normalizes text files; ESLint should accept the native checkout EOL on Windows/Linux.
+      '@stylistic/linebreak-style': 'off',
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/semi': ['error', 'never'],
       '@stylistic/no-trailing-spaces': 'error',

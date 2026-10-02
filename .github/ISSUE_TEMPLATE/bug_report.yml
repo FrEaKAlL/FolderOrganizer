@@ -16,18 +16,19 @@ body:
     attributes:
       label: FolderOrganizer version
       description: Which version of FolderOrganizer are you using?
-      placeholder: "Example: v1.1.0"
+      placeholder: "Example: v1.2.0"
     validations:
       required: true
 
   - type: dropdown
-    id: windows-version
+    id: operating-system
     attributes:
-      label: Windows version
-      description: Which version of Windows are you using?
+      label: Operating system
+      description: Which operating system are you using?
       options:
         - Windows 11
         - Windows 10
+        - Linux
         - Other
     validations:
       required: true
@@ -39,6 +40,7 @@ body:
       description: How are you running FolderOrganizer?
       options:
         - Windows Service
+        - Linux systemd service
         - Manual execution
         - Development environment
         - Other

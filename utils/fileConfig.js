@@ -4,7 +4,30 @@ const logger = require('./logger')
 const validations = require('./validations')
 const fs = require('node:fs')
 const path = require('node:path')
-const configPath = path.resolve(__dirname, '..', 'config.json')
+const os = require('node:os')
+
+const getConfigDirectory = () => {
+  if (process.env.FOLDERORGANIZER_CONFIG_DIR) {
+    return process.env.FOLDERORGANIZER_CONFIG_DIR
+  }
+
+  if (process.platform === 'win32') {
+    return path.join(process.env.ProgramData || 'C:\\ProgramData', 'FolderOrganizer')
+  }
+
+  if (process.platform === 'linux') {
+    return path.join(process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config'), 'folderorganizer')
+  }
+
+  return path.join(os.homedir(), '.folderorganizer')
+}
+
+const configDirectory = getConfigDirectory()
+const configPath = path.join(configDirectory, 'config.json')
+
+const ensureConfigDirectory = () => {
+  fs.mkdirSync(configDirectory, { recursive: true })
+}
 
 const validateFileConfig = () => {
   if (validations.fileExist(configPath)) {
@@ -13,6 +36,7 @@ const validateFileConfig = () => {
     }
     return true
   }
+  return false
 }
 const getConfiguration = () => {
   try {
@@ -23,15 +47,6 @@ const getConfiguration = () => {
   }
 }
 
-const createConfigEmpty = () => {
-  if (!validations.fileExist(configPath)) {
-    try {
-      fs.writeFileSync(configPath, JSON.stringify({ empty: true }))
-    } catch (exception) {
-      logger.error(exception.message)
-    }
-  }
-}
 const saveConfiguration = (language, path, typeConfig, configurationCustom) => {
   const text = (language === 'ingles') ? resourcesIng.ing : resourcesEsp.esp
   let json = {
@@ -45,6 +60,7 @@ const saveConfiguration = (language, path, typeConfig, configurationCustom) => {
     json.carpetas = configurationCustom
   }
   try {
+    ensureConfigDirectory()
     fs.writeFileSync(configPath, JSON.stringify(json))
     logger.info(text.configuracionGuardada)
     return true
@@ -52,4 +68,4 @@ const saveConfiguration = (language, path, typeConfig, configurationCustom) => {
     process.exit(1)
   }
 }
-module.exports = { getConfiguration, validateFileConfig, createConfigEmpty, saveConfiguration }
+module.exports = { getConfiguration, validateFileConfig, saveConfiguration, getConfigDirectory, configPath }

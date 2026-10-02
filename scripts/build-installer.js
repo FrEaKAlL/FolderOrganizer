@@ -12,10 +12,6 @@ const compilerPaths = [
 ].filter(Boolean)
 const compilerPath = compilerPaths.find(candidate => fs.existsSync(candidate))
 
-if (!compilerPath) {
-  throw new Error('Inno Setup 6 was not found. Install it or set ISCC_PATH to ISCC.exe.')
-}
+if (!compilerPath) throw new Error('Inno Setup 6 was not found. Install it or set ISCC_PATH to ISCC.exe.')
 
-execFileSync(compilerPath, [ scriptPath, `/DMyAppVersion=${ packageJson.version }` ], {
-  stdio: 'inherit'
-})
+execFileSync(compilerPath, [ scriptPath, `/DMyAppVersion=${ packageJson.version }` ], { stdio: 'inherit' })

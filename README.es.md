@@ -5,11 +5,11 @@
 </h1>
 
 <p align="center">
-  <strong>Organiza tus archivos automáticamente en Windows.</strong>
+  <strong>Organiza tus archivos automáticamente en Windows y Linux.</strong>
 </p>
 
 <p align="center">
-  Aplicación ligera y de código abierto que clasifica automáticamente tus archivos mediante reglas configurables.
+  Aplicación ligera y de código abierto que clasifica automáticamente tus archivos mediante reglas configurables en Windows y Linux.
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/FrEaKAlL/FolderOrganizer?label=release" alt="Última versión">
-  <img src="https://img.shields.io/badge/platform-Windows-blue" alt="Windows">
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux-blue" alt="Windows y Linux">
   <img src="https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="Licencia MIT">
   <a href="https://github.com/sponsors/FrEaKAlL">
@@ -47,7 +47,7 @@ Con el tiempo, encontrar documentos, imágenes, instaladores o archivos importan
 
 Puede ejecutarse:
 
-- 🔄 Automáticamente como **Servicio de Windows**.
+- 🔄 Automáticamente como **Servicio de Windows** o mediante **systemd en Linux**.
 - 💻 Manualmente cuando necesites organizar tus archivos.
 - ⚙️ Con una estructura predeterminada.
 - 🛠️ Con reglas personalizadas.
@@ -106,7 +106,7 @@ Downloads/
 - 🧙 Asistente interactivo de configuración.
 - 🗣️ Selección de idioma.
 - 💾 Reutilización de configuraciones anteriores.
-- 📦 Instalador para Windows.
+- 📦 Instalador para Windows y runtime compatible con Linux.
 - 🔓 Código abierto.
 
 ------------------------------------------------------------------------
@@ -132,7 +132,7 @@ Una vez concluida la instalación, busca **FolderOrganizer** dentro del menú In
 
 ![FolderOrganizer en el menú Inicio](./assets/instalacion-2.png)
 
-Al ejecutar el programa, acepta la solicitud de elevación de privilegios de Windows para abrir la consola interactiva.
+La aplicación interactiva se ejecuta con permisos normales de usuario. La elevación de administrador se solicita únicamente cuando FolderOrganizer necesita registrar o administrar el Servicio de Windows.
 
 ![Consola inicial de FolderOrganizer](./assets/instalacion-3.png)
 
@@ -262,7 +262,7 @@ pnpm run build:installer
 
 - **Node.js** — entorno de ejecución de JavaScript.
 - **Inquirer** — asistente interactivo para la configuración mediante consola.
-- **node-windows** — integración e instalación del proceso como Servicio de Windows.
+- **node-windows** — integración e instalación del proceso como Servicio de Windows.\n- **systemd** — integración del servicio en segundo plano para Linux.
 - **Color** — formato visual de la interfaz CLI.
 - **ESLint** — control de calidad del código.
 - **cross-env** — gestión de variables de entorno.
@@ -270,12 +270,11 @@ pnpm run build:installer
 ### Empaquetado
 
 - **Inno Setup Compiler** — generación del instalador para Windows.
-- **bat-to-exe-converter** — utilidad para empaquetar scripts de ejecución.
 - **Inkscape** — utilizado para la creación del icono de FolderOrganizer.
 
 ------------------------------------------------------------------------
 
-## 🤝 Contribuir
+## 🗺️ Roadmap\n\nLas prioridades de desarrollo y mejoras planeadas se encuentran en [`ROADMAP.md`](./ROADMAP.md). El historial de versiones está disponible en [`CHANGELOG.md`](./CHANGELOG.md).\n\n> El código incluye soporte para Linux, pero Windows continúa siendo la distribución principal validada para v1.2.0.\n\n------------------------------------------------------------------------\n\n## 🤝 Contribuir
 
 Las contribuciones son bienvenidas.
 

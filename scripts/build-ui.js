@@ -3,62 +3,56 @@ const path = require('node:path')
 const { execFileSync } = require('node:child_process')
 
 const projectRoot = path.resolve(__dirname, '..')
-const outputDirectory = path.join(projectRoot, 'dist', 'FolderOrganizer-build')
-const directories = [ 'utils', 'menu', 'process', 'resources' ]
-const files = [ 'index.js', 'package.json', 'pnpm-lock.yaml', 'start.exe' ]
+const outputDirectory = path.resolve(projectRoot, 'dist', 'FolderOrganizer-build')
+const directories = [ 'menu', 'process', 'resources', 'utils' ]
+const files = [ 'index.js', 'package.json', 'pnpm-lock.yaml' ]
+const launchers = [ 'folderorganizer.cmd', 'folderorganizer.sh' ]
+const assets = [ 'icon.ico' ]
 
-const retry = async operation => {
-  let error
-
-  for (let attempt = 0; attempt < 5; attempt++) {
-    try {
-      return await operation()
-    } catch (exception) {
-      error = exception
-      await new Promise(resolve => setTimeout(resolve, 500))
-    }
-  }
-
-  throw error
+const assertBuildDestination = () => {
+  const expectedRoot = path.resolve(projectRoot, 'dist') + path.sep
+  if (!outputDirectory.startsWith(expectedRoot)) throw new Error(`Unsafe build destination: ${ outputDirectory }`)
+  console.log(`Portable build destination: ${ outputDirectory }`)
 }
 
-const copy = source => retry(() => fs.cp(
-  path.join(projectRoot, source),
-  path.join(outputDirectory, source),
-  { recursive: true }
-))
+const runPnpm = args => {
+  const packageManager = process.env.npm_execpath
+  if (!packageManager) throw new Error('Run the build through pnpm so production dependencies can be installed.')
+  const options = { cwd: projectRoot, stdio: 'inherit', env: { ...process.env, INIT_CWD: projectRoot } }
+  if (packageManager.toLowerCase().endsWith('.exe')) { execFileSync(packageManager, args, options); return }
+  execFileSync(process.execPath, [ packageManager, ...args ], options)
+}
+
+const copyApplication = async () => {
+  for (const directory of directories) await fs.cp(path.join(projectRoot, directory), path.join(outputDirectory, directory), { recursive: true })
+  for (const file of files) await fs.copyFile(path.join(projectRoot, file), path.join(outputDirectory, file))
+  for (const launcher of launchers) await fs.copyFile(path.join(projectRoot, 'launchers', launcher), path.join(outputDirectory, launcher))
+  const assetsDirectory = path.join(outputDirectory, 'assets')
+  await fs.mkdir(assetsDirectory, { recursive: true })
+  for (const asset of assets) await fs.copyFile(path.join(projectRoot, 'assets', asset), path.join(assetsDirectory, asset))
+}
 
 const installProductionDependencies = () => {
-  execFileSync(
-    'pnpm',
-    [
-      'install',
-      '--prod',
-      '--frozen-lockfile',
-      '--ignore-scripts',
-      '--dir',
-      outputDirectory
-    ],
-    {
-      stdio: 'inherit',
-      shell: true
-    }
-  )
+  runPnpm([ 'install', '--prod', '--frozen-lockfile', '--node-linker=hoisted', '--ignore-scripts', '--dir', outputDirectory ])
+}
+
+const validateDistribution = () => {
+  const validationScript = [
+    'require(\'./process/service\')',
+    'require(\'./menu/menu\')',
+    'Promise.resolve(import(\'inquirer\')).catch(error => { console.error(error); process.exit(1) })'
+  ].join(';')
+  execFileSync(process.execPath, [ '-e', validationScript ], { cwd: outputDirectory, stdio: 'inherit', env: { ...process.env, NODE_ENV: 'production' } })
+  console.log('Portable distribution validated successfully.')
 }
 
 const build = async () => {
-  await retry(() => fs.rm(outputDirectory, { recursive: true, force: true }))
+  assertBuildDestination()
+  await fs.rm(outputDirectory, { recursive: true, force: true })
   await fs.mkdir(outputDirectory, { recursive: true })
-
-  for (const source of directories) {
-    await copy(source)
-  }
-
-  for (const source of files) {
-    await copy(source)
-  }
-
+  await copyApplication()
   installProductionDependencies()
+  validateDistribution()
 }
 
 build().catch(error => {

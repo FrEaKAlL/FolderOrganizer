@@ -1,5 +1,10 @@
 require('colors')
-const { default: inquirer } = require('inquirer')
+let inquirer
+
+const prompt = async question => {
+  inquirer ??= (await import('inquirer')).default
+  return inquirer.prompt(question)
+}
 const resources = require('../resources/recursos.json')
 const resourcesIng = require('../resources/recursos.ing.json')
 const resourcesEsp = require('../resources/recursos.esp.json')
@@ -14,18 +19,18 @@ const header = () => {
   logger.box(resources.init.titulo.blue)
 }
 const language = () => {
-  return inquirer.prompt({
-    type: 'list',
+  return prompt({
+    type: 'select',
     name: 'response',
     message: resources.init.texto,
     choices: resources.init.opciones,
     filter(value) {
       return value.toLowerCase()
     }
-  }).then(({ response }) => response).catch(() => process.exit(1))
+  }).then(({ response }) => response)
 }
 const pathOrganizer = (text) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'input',
     name: 'response',
     message: text.rutaDeDescarga,
@@ -35,39 +40,39 @@ const pathOrganizer = (text) => {
       }
       return text.rutaInValida
     }
-  }).then(({ response }) => response).catch(() => process.exit(1))
+  }).then(({ response }) => response)
 }
 const typeConfig = (text) => {
-  return inquirer.prompt({
-    type: 'list',
+  return prompt({
+    type: 'select',
     name: 'response',
     message: text.infoDeConfiguracion.texto,
     choices: text.infoDeConfiguracion.opciones,
     filter(value) {
       return value.toLowerCase()
     }
-  }).then(({ response }) => response === 'defecto' || response === 'default' ? 'default' : 'custom').catch(() => process.exit(1))
+  }).then(({ response }) => response === 'defecto' || response === 'default' ? 'default' : 'custom')
 }
 const typeConfirm = (text) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'confirm',
     name: 'response',
     message: text.confirmacion,
     default: true,
     transformer: (answer) => (answer ? '✔️' : '✖️'),
-  }).then(({ response }) => !response ).catch(() => process.exit(1))
+  }).then(({ response }) => !response )
 }
 const questionsConfig = (text, carpeta) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'confirm',
     name: 'response',
     message: `${ text.preguntaAConfigurar } ${ carpeta }`,
     default: true,
     transformer: (answer) => (answer ? `${ carpeta } ✔️` : `${ carpeta } ✖️`),
-  }).then(({ response }) => response ).catch(() => process.exit(1))
+  }).then(({ response }) => response )
 }
 const questionsExt = (text, ext) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'input',
     name: 'response',
     message: text.preguntaExtenciones,
@@ -80,7 +85,7 @@ const questionsExt = (text, ext) => {
     default() {
       return ext
     }
-  }).then(({ response }) => response.split(',').map(x => x.trim()).join(', ')).catch(() => process.exit(1))
+  }).then(({ response }) => response.split(',').map(x => x.trim()).join(', '))
 }
 const configurationCustomQuestions = async (text) => {
   let configurationCustom = []
@@ -100,22 +105,22 @@ const configurationCustomQuestions = async (text) => {
   return configurationCustom
 }
 const questionCreateService = (text) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'confirm',
     name: 'response',
     message: text.preguntaCrearServicio,
     default: true,
     transformer: (answer) => (answer ? '✔️' : '✖️')
-  }).then(({ response }) => response).catch(() => process.exit(1))
+  }).then(({ response }) => response)
 }
 const questionsProcessExecute = (text) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'confirm',
     name: 'response',
     message: text.ejecutaProceso,
     default: true,
     transformer: (answer) => (answer ? '✔️' : '✖️')
-  }).then(({ response }) => response).catch(() => process.exit(1))
+  }).then(({ response }) => response)
 }
 const normalProcess = async () => {
   const lng = await language()
@@ -136,7 +141,7 @@ const normalProcess = async () => {
   if (configurationCustom.length !== 0 || optionType === 'default') {
     if (fileConfig.saveConfiguration(lng, path, optionType, configurationCustom)) {
       if (await questionCreateService(text)) {
-        service.creaServicioEnWindows(text)
+        await service.installServiceInteractive(text.descripcion)
       } else {
         if (await questionsProcessExecute(text)) {
           processFile.executeProcess()
@@ -146,13 +151,13 @@ const normalProcess = async () => {
   }
 }
 const questionExecutePrevio = (text) => {
-  return inquirer.prompt({
+  return prompt({
     type: 'confirm',
     name: 'response',
     message: text.preguntaDeEjecucion,
     default: true,
     transformer: (answer) => (answer ? '✔️' : '✖️')
-  }).then(({ response }) => response).catch(() => process.exit(1))
+  }).then(({ response }) => response)
 }
 const executePrevio = async () => {
   const configuration = fileConfig.getConfiguration()
@@ -164,23 +169,23 @@ const executePrevio = async () => {
 
   if (await questionExecutePrevio(text)) {
     if (await questionCreateService(text)) {
-      service.creaServicioEnWindows(text)
+      await service.installServiceInteractive(text.descripcion)
     } else {
       if (await questionsProcessExecute(text)) {
         processFile.executeProcess()
       }
     }
   } else {
-    normalProcess()
+    await normalProcess()
   }
 }
 
-const menu = () => {
+const menu = async () => {
   header()
   if (fileConfig.validateFileConfig()) {
-    executePrevio()
+    await executePrevio()
   } else {
-    normalProcess()
+    await normalProcess()
   }
 }
 module.exports = { menu }
