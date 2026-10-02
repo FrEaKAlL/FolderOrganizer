@@ -1,5 +1,7 @@
 # 🤝 Contributing to FolderOrganizer
 
+**English** | [Español](./CONTRIBUTING.es.md)
+
 Thank you for your interest in improving **FolderOrganizer**. Contributions such as bug fixes, documentation improvements, translations, tests, and new features are welcome.
 
 Please follow these guidelines so changes remain easy to review, test, and maintain.
