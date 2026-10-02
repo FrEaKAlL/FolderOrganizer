@@ -1,5 +1,21 @@
-node_modules
-pruebas.js
-dist
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Runtime / generated files
 config.json
-process/daemon
+process/daemon/
+
+# Legacy / generated files
+start.exe
+package-lock.json
+
+# Local development files
+pruebas.js
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.log
