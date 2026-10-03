@@ -68,32 +68,40 @@ Puede ejecutarse:
 ### Antes
 
 ``` text
-Downloads/
-├── factura.pdf
+Descargas/
+├── archivo.zip
 ├── fotografia.jpg
-├── video.mp4
+├── documento.docx
+├── notas.txt
+├── setup_installer.exe
 ├── reporte.xlsx
-├── instalador.exe
-└── documento.docx
+├── desconocido.file
+├── Windows10.iso
+├── datos.json
+├── factura.pdf
+├── presentacion.pptx
+└── script.js
 ```
 
 ### Después
 
 ``` text
-Downloads/
-├── Documents/
-│   ├── factura.pdf
-│   ├── reporte.xlsx
-│   └── documento.docx
-├── Images/
-│   └── fotografia.jpg
-├── Videos/
-│   └── video.mp4
-└── Programs/
-    └── instalador.exe
+Descargas/
+├── zip o rar/
+├── Imagenes/
+├── Word/
+├── Texto/
+├── Ejecutables/
+├── Excel/
+├── Otros/
+├── ISO/
+├── JSON/
+├── PDF/
+├── Presentaciones/
+└── Scripts/
 ```
 
-> La estructura final depende de las reglas y carpetas configuradas por el usuario.
+> El ejemplo refleja las categorías predeterminadas de FolderOrganizer. Con reglas personalizadas, la estructura final puede adaptarse a las carpetas y extensiones que prefieras.
 
 ------------------------------------------------------------------------
 
