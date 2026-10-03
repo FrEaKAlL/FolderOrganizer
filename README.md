@@ -69,31 +69,39 @@ It can run:
 
 ``` text
 Downloads/
-├── invoice.pdf
+├── archive.zip
 ├── photo.jpg
-├── video.mp4
+├── document.docx
+├── notes.txt
+├── setup_installer.exe
 ├── report.xlsx
-├── installer.exe
-└── document.docx
+├── unknown.file
+├── Windows10.iso
+├── data.json
+├── invoice.pdf
+├── presentation.pptx
+└── script.js
 ```
 
 ### After
 
 ``` text
 Downloads/
-├── Documents/
-│   ├── invoice.pdf
-│   ├── report.xlsx
-│   └── document.docx
-├── Images/
-│   └── photo.jpg
-├── Videos/
-│   └── video.mp4
-└── Programs/
-    └── installer.exe
+├── zip o rar/
+├── Imagenes/
+├── Word/
+├── Texto/
+├── Ejecutables/
+├── Excel/
+├── Otros/
+├── ISO/
+├── JSON/
+├── PDF/
+├── Presentaciones/
+└── Scripts/
 ```
 
-> The final structure depends on the folders and rules configured by the user.
+> The example reflects the default FolderOrganizer categories. With custom rules, the final structure can be adapted to your preferred folders and extensions.
 
 ------------------------------------------------------------------------
 
